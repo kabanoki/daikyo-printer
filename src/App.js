@@ -3,7 +3,15 @@ import './App.css';
 
 class App extends Component {
   state = {
-    list: [{id:0,value:"ToDoリストを書く"},],
+    list: [
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+      {name:'', fileName:''},
+    ],
   };
 
   constructor(prop) {
@@ -21,19 +29,21 @@ class App extends Component {
 
   render() {
     return <div className="App">
-      <table className='table'>
-        <thead><tr><td>
-<button className='btn btn-success' onClick={this.insert.bind(this)}>
-            追加</button>
-        </td><td>
-          <input type="text" ref={this.todoRef} size="50" />
-        </td></tr></thead>
-        <tbody>
-          {this.state.list.map(item => <tr key={item.id}>
-            <td>{item.id}</td><td>{item.value}</td>
-          </tr>)}
-        </tbody>
-      </table>
+      <div className="container">
+        <div className="card">
+          <h5 className="card-header">印刷を選択</h5>
+          <div className="card-body overflow-auto print-list">
+            <div className="list-group">
+              {this.state.list.map(item => 
+              <button key={item.id} type="button" className="list-group-item list-group-item-action">A second item</button>
+              )}
+            </div>
+          </div>
+          <div className="card-footer text-muted">
+            <button type="button" className="btn btn-outline-secondary">CSV再取り込み</button>
+          </div>
+        </div>
+      </div>
     </div>
   }
 }

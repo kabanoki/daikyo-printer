@@ -1,17 +1,5 @@
-/*Appクラスセレクタ*/
-.App {
-  /*内側の余白を上下左右10pxずつ*/
-    padding: 10px;
-  }
-  /*tdセレクタ*/
-  td {
-  /*ボーダーの線の太さ1pxで、1本線で、黒色*/
-    border: 1px solid #000;
-  }
-  /*buttonセレクタ、inputセレクタ*/
-  button,
-  input {
-  /*外側の余白を上下左右5pxずつ*/
-    margin: 5px;
-  }
-  
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
+
+.print-list{
+  height: 500px;
+}
