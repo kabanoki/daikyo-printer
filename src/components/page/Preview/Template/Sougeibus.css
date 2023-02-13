@@ -1,0 +1,80 @@
+body {
+    font-size: 12px;
+}
+
+.container {
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1.title {
+    text-align: center;
+    border: #000 1px solid;
+    padding: 5px;
+    background-color: silver;
+    color: white;
+}
+
+#preview table th {
+    background-color: silver;
+    font-weight: 600;
+}
+
+#preview table tr .t1 {
+    width: 30mm;
+    padding: 2px;
+}
+#preview table tr .t2 {
+    width: 10mm;
+    padding: 2px;
+    text-align: center;
+}
+#preview table tr .t3 {
+    width: 15mm;
+    padding: 2px;
+}
+#preview table tr .t4 {
+    width: 20mm;
+    padding: 2px;
+}
+#preview table tr .t5 {
+    width: 20mm;
+    padding: 2px;
+}
+#preview table tr .t6 {
+    width: 8mm;
+    padding: 2px;
+    text-align: right;
+}
+#preview table tr .t7 {
+    width: 8mm;
+    padding: 2px;
+    text-align: right;
+}
+#preview table tr .t8 {
+    width: 8mm;
+    padding: 2px;
+    text-align: right;
+}
+#preview table tr .t9 {
+    width: 20mm;
+    padding: 2px;
+}
+
+
+.print_pages {
+    width: 172mm;
+    margin: auto;
+}
+
+@media print {
+    .print_pages{
+        width: 172mm;
+        height: 251mm;
+        page-break-after: always;
+    }
+    .print_pages:last-child{
+        page-break-after: auto;
+    }
+}
+    

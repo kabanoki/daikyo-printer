@@ -3,3 +3,18 @@
 .print-list{
   height: 500px;
 }
+
+#home.container,
+#system.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+#home .card,
+#system .card  {
+  width: 90vw;
+  max-width: 650px;
+  min-width: 300px;
+}
