@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./style.css";
 
 import Sougeibus from "./Template/Sougeibus";
 
-function Preview() {
+const Preview = () => {
+
+  const [csvData, setCsvData] = useState([]); 
+
   return (
     <div id="preview">
-      <Sougeibus /> 
+      <Sougeibus csvData={csvData}  /> 
     </div>
   )
 }

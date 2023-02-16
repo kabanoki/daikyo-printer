@@ -1,15 +1,16 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import "./style.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 
-const Home = () => {
+const Home = ({ selectCsv, setSelectCsv }) => {
 
   const[csvList, setCsvList] = useState([]);
-  const [selectCsv, setSelectCsv] = useState({id:null, name:'', fileName:'', filePath:''});
+  const navigate = useNavigate();
 
   useEffect(()=>{
     setCsvList([
@@ -28,6 +29,7 @@ const Home = () => {
       setSelectCsv(item);
       csvList.splice(index, 1);
       setCsvList(csvList);
+      navigate("/preview");
     }
   }
 
@@ -38,10 +40,9 @@ const Home = () => {
         <div className="card-body overflow-auto print-list">
           <div className="list-group">
             {csvList.map((item, i) => 
-            <button key={item.id} 
-                    type="button" 
-                    onClick={() => clickBtn(item, i)}
-                    className="list-group-item list-group-item-action">{item.name}</button>
+              <button type="button" 
+                      onClick={() => clickBtn(item, i)}
+                      className="list-group-item list-group-item-action">{item.name}</button>
             )}
           </div>
         </div>

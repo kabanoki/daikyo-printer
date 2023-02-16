@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 
 function Ststem() {
-  const [selectFolder, setSelectFolder] = useState('C:\\daiky\\Downloads');
+  const [selectFolder, setSelectFolder] = useState();
+
+  setSelectFolder('C:\\daiky\\Downloads');
 
   function changeFolder() {
     if(window.confirm("検索フォルダを確定させます")){

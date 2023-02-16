@@ -7,12 +7,17 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-h1.title {
+h3.title {
     text-align: center;
     border: #000 1px solid;
     padding: 5px;
     background-color: silver;
     color: white;
+}
+
+#preview table {
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 #preview table th {
@@ -61,16 +66,32 @@ h1.title {
     padding: 2px;
 }
 
+tr.no-border {
+    border-width: 0;
+}
+.no-border td {
+    border: none;
+}
 
 .print_pages {
     width: 172mm;
-    margin: auto;
+    height: 251mm;
+    margin: 30px auto;
+    border: dotted 1px #dcdcdc;
 }
 
 @media print {
+    @page { size: A4 } 
+    
+    .container {
+        margin-top: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
     .print_pages{
         width: 172mm;
         height: 251mm;
+        margin: auto;
+        border: none;
         page-break-after: always;
     }
     .print_pages:last-child{
