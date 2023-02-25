@@ -1,11 +1,17 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const isDev = require("electron-is-dev");
+const Store = require('electron-store');
+
+const store = new Store();
+store.set('downloadPath', 'C:\\daiky\\Downloads');
+
+console.log(store.get('downloadPath'));
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 900,
+    height: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
