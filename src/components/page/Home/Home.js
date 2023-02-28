@@ -7,36 +7,71 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 
-const Home = ({ selectCsv, setSelectCsv }) => {
+const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
   const[csvList, setCsvList] = useState([]);
   const navigate = useNavigate();
+  const previewMaster = [
+    {
+      SearchPrefix: '___PRINT_DATA_print1',
+      fileName: 'ダイレクトメール',
+      type: 1
+    },{
+      SearchPrefix: '___PRINT_DATA_print2',
+      fileName: '___PRINT_DATA_print2',
+      type: 2
+    },{
+      SearchPrefix: '___PRINT_DATA_print3',
+      fileName: '___PRINT_DATA_print3',
+      type: 3
+    },{
+      SearchPrefix: '___PRINT_DATA_print4',
+      fileName: '___PRINT_DATA_print4',
+      type: 4
+    },{
+      SearchPrefix: '___PRINT_DATA_print5',
+      fileName: '送迎バス一覧',
+      type: 5
+    },{
+      SearchPrefix: '___PRINT_DATA_print6',
+      fileName: '___PRINT_DATA_print6',
+      type: 6
+    },{
+      SearchPrefix: '___PRINT_DATA_print7',
+      fileName: '___PRINT_DATA_print7',
+      type: 7
+    },
+  ];
 
   useEffect(()=>{
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
-      console.log(list);
+      
+      const setPreviewTypes = (item) => {
+        return previewMaster.find(preview => item.startsWith(preview.SearchPrefix));
+      }
 
-      const newCsvList = list.map((item, index)=>{
+      const newCsvList = await list.map((item, index)=>{
+        let previewType = setPreviewTypes(item);
         return {
           id: index+1,
-          name: item,
-          fileName: item,
-          filePath: item,
-          type: index+1
+          name: previewType.fileName,
+          fileName: previewType.fileName,
+          filePath: [selectFolder, item].join("\\"),
+          type: previewType.type
         }
       });
       setCsvList(newCsvList);
     }
     initCsvList();
-  }, []);
+  }, [selectFolder]);
 
   function clickBtn(item, index) {
     if(window.confirm(item.name + "を起動します。\n起動するとCSVは削除されます。")){
       setSelectCsv(item);
       csvList.splice(index, 1);
       setCsvList(csvList);
-      navigate("/preview");
+      // navigate("/preview");
     }
   }
 
@@ -54,7 +89,7 @@ const Home = ({ selectCsv, setSelectCsv }) => {
           </div>
         </div>
         <div className="card-footer text-muted">
-          <button type="button" className="btn btn-outline-secondary"><FontAwesomeIcon icon={faRotateRight} /> CSV再取り込み</button>
+          <button type="button" className="btn btn-outline-secondary" onClick={ () => window.location.reload() }><FontAwesomeIcon icon={faRotateRight} /> CSV再取り込み</button>
         </div>
       </div>
     </div>
