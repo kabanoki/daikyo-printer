@@ -13,11 +13,11 @@ function App() {
   const [selectFolder, setSelectFolder] = useState('C:\\daiky\\Downloads');
 
   useEffect(()=>{
-    const setInit = async () => {
+    const init = async () => {
       const Store = await window.electronAPI.initStore();
       setSelectFolder(Store.downloadPath);
     }
-    setInit();
+    init();
   },[])
 
   return (

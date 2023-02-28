@@ -1,5 +1,6 @@
 const {app, dialog, ipcMain, BrowserWindow, Menu} = require('electron')
 const path = require('path')
+const fs = require('fs');
 const isDev = require("electron-is-dev");
 const prompt = require('electron-prompt');
 const Store = require('electron-store');
@@ -66,11 +67,9 @@ function createWindow() {
 app.whenReady().then(() => {
   ipcMain.handle('initStore', handleInitStore);
   ipcMain.handle('OpenDownloadFolder', handleOpenDownloadFolder);
+  ipcMain.handle('getCsvList', handleGetCsvList);
 
   createWindow();
-
-  console.log(store.get('downloadPath'));
-
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -81,9 +80,14 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
+
+
+
+
+
 async function handleInitStore() {
   return {
-    downloadPath: store.has('downloadPath') ? store.get('downloadPath') : 'C:\\daiky\\Downloads'
+    downloadPath: store.has('downloadPath') ? store.get('downloadPath') : app.getPath('downloads')
   };
 }
 
@@ -92,7 +96,7 @@ async function handleOpenDownloadFolder() {
   await dialog.showOpenDialog({
     properties: ['openDirectory']
   }).then(r => {
-    result = r.filePaths;
+    result = r.filePaths[0];
     store.set('downloadPath', result);
   }).catch(err => {
     console.log(err)
@@ -100,4 +104,12 @@ async function handleOpenDownloadFolder() {
   return result;
 }
 
+async function handleGetCsvList() {
+  const downloadFolderPath = store.has('downloadPath') ? store.get('downloadPath') : app.getPath('downloads'); // ダウンロードフォルダのパスを取得
 
+  const csvFiles = await fs.readdirSync(downloadFolderPath).filter((filename) => {
+    return filename.startsWith('___PRINT_DATA_print') && path.extname(filename) === '.csv';
+  });
+
+  return csvFiles;
+}

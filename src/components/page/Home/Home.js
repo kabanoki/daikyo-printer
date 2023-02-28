@@ -13,15 +13,22 @@ const Home = ({ selectCsv, setSelectCsv }) => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    setCsvList([
-      {id:1, name:'バス一覧表', fileName:'', filePath:'', type:1},
-      {id:2, name:'B second item', fileName:'', filePath:'', type:2},
-      {id:3, name:'C second item', fileName:'', filePath:'', type:3},
-      {id:4, name:'D second item', fileName:'', filePath:'', type:4},
-      {id:5, name:'E second item', fileName:'', filePath:'', type:5},
-      {id:6, name:'F second item', fileName:'', filePath:'', type:6},
-      {id:7, name:'G second item', fileName:'', filePath:'', type:7},
-    ]);
+    const initCsvList = async () => {
+      const list = await window.electronAPI.getCsvList() || [];
+      console.log(list);
+
+      const newCsvList = list.map((item, index)=>{
+        return {
+          id: index+1,
+          name: item,
+          fileName: item,
+          filePath: item,
+          type: index+1
+        }
+      });
+      setCsvList(newCsvList);
+    }
+    initCsvList();
   }, []);
 
   function clickBtn(item, index) {
@@ -42,7 +49,7 @@ const Home = ({ selectCsv, setSelectCsv }) => {
             {csvList.map((item, i) => 
               <button type="button" 
                       onClick={() => clickBtn(item, i)}
-                      className="list-group-item list-group-item-action">{item.name}</button>
+                      className="list-group-item list-group-item-action" key={item.id}>{item.name}</button>
             )}
           </div>
         </div>
