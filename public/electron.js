@@ -68,6 +68,7 @@ app.whenReady().then(() => {
   ipcMain.handle('initStore', handleInitStore);
   ipcMain.handle('OpenDownloadFolder', handleOpenDownloadFolder);
   ipcMain.handle('getCsvList', handleGetCsvList);
+  ipcMain.handle('getPreviewData', handleGetPreviewData);
 
   createWindow();
 
@@ -83,7 +84,7 @@ app.on('window-all-closed', function () {
 
 
 
-
+//---------------------------------------------------------------------
 
 async function handleInitStore() {
   return {
@@ -113,3 +114,26 @@ async function handleGetCsvList() {
 
   return csvFiles;
 }
+
+async function handleGetPreviewData(){
+  return store.get('previewData');
+}
+
+
+//---------------------------------------------------------------------
+
+ipcMain.on('openPreviewWindow', (event, arg) => {
+  console.log(arg.data);
+
+  store.set('previewData', arg.data);
+
+  let childWindow = new BrowserWindow({
+    width: 900,
+    height: 900,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js')
+    }
+  });
+  childWindow.loadURL(`${url}/preview`);
+});
