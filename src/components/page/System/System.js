@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 
-const Ststem = () => {
-  const [selectFolder, setSelectFolder] = useState('C:\\daiky\\Downloads');
-
-  function changeFolder() {
-    if(window.confirm("検索フォルダを確定させます")){
-      console.log(selectFolder);
-    }
+const Ststem = ({selectFolder, setSelectFolder}) => {
+  
+  const changeFolder = async () => {
+    const newFolder = await window.electronAPI.opneDownloadFolder();
+    setSelectFolder(newFolder);
   }
 
   return (

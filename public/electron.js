@@ -1,14 +1,13 @@
-const {app, ipcMain, BrowserWindow, Menu} = require('electron')
+const {app, dialog, ipcMain, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const isDev = require("electron-is-dev");
+const prompt = require('electron-prompt');
 const Store = require('electron-store');
+
 
 const isMac = (process.platform === 'darwin');
 
 const store = new Store();
-store.set('downloadPath', 'C:\\daiky\\Downloads');
-
-console.log(store.get('downloadPath'));
 
 const url = isDev ? "http://localhost:4000"
                   : `file://${path.join(__dirname, "../build/index.html")}`;
@@ -57,6 +56,7 @@ function createWindow() {
     width: 900,
     height: 900,
     webPreferences: {
+      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -64,7 +64,14 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  ipcMain.handle('initStore', handleInitStore);
+  ipcMain.handle('OpenDownloadFolder', handleOpenDownloadFolder);
+
+  createWindow();
+
+  console.log(store.get('downloadPath'));
+
+
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
@@ -73,3 +80,24 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
+
+async function handleInitStore() {
+  return {
+    downloadPath: store.has('downloadPath') ? store.get('downloadPath') : 'C:\\daiky\\Downloads'
+  };
+}
+
+async function handleOpenDownloadFolder() {
+  let result = "";
+  await dialog.showOpenDialog({
+    properties: ['openDirectory']
+  }).then(r => {
+    result = r.filePaths;
+    store.set('downloadPath', result);
+  }).catch(err => {
+    console.log(err)
+  })
+  return result;
+}
+
+
