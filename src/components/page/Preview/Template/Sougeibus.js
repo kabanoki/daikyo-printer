@@ -482,10 +482,10 @@ const Sougeibus = ({ csvData }) => {
                       </thead>
                     </table>  
                     {i === 0 ? (<p className='fw-bold'>{group}</p>):''}
-                    <div class="page">
-                      {page.map((busStop) => {
+                    <div className="page">
+                      {page.map((busStop, s) => {
                         return (
-                          <table className='table table-bordered' key={busStop.busStop}>  
+                          <table className='table table-bordered' key={`${busStop.busStop}-${i}-${s}`}>  
                             <colgroup>
                                 <col className='t1'></col>
                                 <col className='t2'></col>
@@ -498,10 +498,10 @@ const Sougeibus = ({ csvData }) => {
                                 <col className='t9'></col>
                             </colgroup>
                             <tbody>
-                              {busStop.users.map((user, i) => {
-                                return (<tr key={user.no}>
-                                  <td className='t1'>{i===0 ? busStop.busStop:''}</td>
-                                  <td className='t2'>{i===0 ? busStop.busStopTime:''}</td>
+                              {busStop.users.map((user, m) => {
+                                return (<tr key={`${busStop.busStop}-${i}-${s}-${m}`}>
+                                  <td className='t1'>{m===0 ? busStop.busStop:''}</td>
+                                  <td className='t2'>{m===0 ? busStop.busStopTime:''}</td>
                                   <td className='t3'>{user.no}</td>
                                   <td className='t4'>{user.name}</td>
                                   <td className='t5'>{user.kana}</td>

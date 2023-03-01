@@ -11,7 +11,9 @@ const Preview = () => {
 
     const initPreviewData = async () => {
       const newCscData = await window.electronAPI.getPreviewData();
-      console.log(newCscData);
+      console.log('-----------------------');
+      console.log('newCscData', newCscData);
+      console.log('-----------------------');
       setCsvData(newCscData);
     };
     initPreviewData();

@@ -1,6 +1,8 @@
 const {app, dialog, ipcMain, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const fs = require('fs');
+const parse = require('csv-parse');
+const iconv = require('iconv-lite');
 const isDev = require("electron-is-dev");
 const prompt = require('electron-prompt');
 const Store = require('electron-store');
@@ -115,16 +117,30 @@ async function handleGetCsvList() {
   return csvFiles;
 }
 
-async function handleGetPreviewData(){
-  return store.get('previewData');
+async function handleGetPreviewData(event){
+
+  const previewData = store.get('previewData');
+  const filePath = previewData.filePath;
+  const csvString = iconv.decode(fs.readFileSync(filePath), 'Shift_JIS');
+
+  return await new Promise((resolve, reject) => {
+    parse.parse(csvString, {
+      relax_column_count: true
+    },(err, output) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      resolve(output);
+    });
+  });
 }
 
 
 //---------------------------------------------------------------------
 
 ipcMain.on('openPreviewWindow', (event, arg) => {
-  console.log(arg.data);
-
   store.set('previewData', arg.data);
 
   let childWindow = new BrowserWindow({
