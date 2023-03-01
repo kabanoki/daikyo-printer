@@ -45,7 +45,7 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
       },
       {
         SearchPrefix: '___PRINT_DATA_print7',
-        fileName: '___PRINT_DATA_print7',
+        fileName: '認定証',
         type: 7
       },
     ];

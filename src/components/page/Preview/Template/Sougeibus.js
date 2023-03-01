@@ -6,6 +6,11 @@ const Sougeibus = ({ csvData, previewData }) => {
   const [group, setGroup] = useState('１号車、月２'); 
 
   const [pages, setPages] = useState([]);
+
+  useEffect(() => {
+    console.log(csvData);
+
+  }, [csvData]);
   
   useEffect(() => {
     const createPage = async () => {

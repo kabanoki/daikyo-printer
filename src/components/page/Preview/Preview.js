@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./style.css";
 
 import Sougeibus from "./Template/Sougeibus";
+import Ninteisho from "./Template/Ninteisho";
 
 const Preview = () => {
 
@@ -24,6 +25,8 @@ const Preview = () => {
     switch(previewData.type){
       case 5 : 
         return (<div id="preview"><Sougeibus csvData={csvData} previewData={previewData} /></div>);
+      case 7 : 
+        return (<div id="preview"><Ninteisho csvData={csvData} /></div>);  
       default :
         return (<></>);  
     }

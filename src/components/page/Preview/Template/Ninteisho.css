@@ -1,0 +1,68 @@
+body {
+    font-size: 12px;
+    background-color: grey !important;
+}
+
+.container {
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.print_pages {
+    width: 172mm;
+    height: 251mm;
+    margin: 30px auto;
+    border: dotted 1px #dcdcdc;
+    background-color: white;
+    position: relative;
+}
+
+.print_pages #rank {
+    font-family: "游ゴシック", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    font-weight: bold;
+    position: absolute;
+    font-size: 10mm;
+    top: 70mm;
+    left: 90mm;
+}
+
+.print_pages #name {
+    font-family: "游ゴシック", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    font-weight: bold;
+    position: absolute;
+    font-size: 10mm;
+    top: 85mm;
+    left: 65mm;
+}
+
+.print_pages #date {
+    position: absolute;
+    font-size: 3mm;
+    top: 160mm;
+    left: 70mm;
+}
+
+@media print {
+    @page { size: A4 } 
+
+    body {
+        font-size: 12px;
+        background-color: white !important;
+    }
+    
+    .container {
+        margin-top: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .print_pages{
+        width: 172mm;
+        height: 251mm;
+        margin: auto;
+        border: none;
+        page-break-after: always;
+    }
+    .print_pages:last-child{
+        page-break-after: auto;
+    }
+}
+    
