@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./Sougeibus.css";
 
 
-const Sougeibus = ({ csvData }) => {
+const Sougeibus = ({ csvData, previewData }) => {
   const [group, setGroup] = useState('１号車、月２'); 
 
   const [pages, setPages] = useState([]);

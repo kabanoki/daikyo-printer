@@ -124,15 +124,16 @@ async function handleGetPreviewData(event){
   const csvString = iconv.decode(fs.readFileSync(filePath), 'Shift_JIS');
 
   return await new Promise((resolve, reject) => {
-    parse.parse(csvString, {
-      relax_column_count: true
-    },(err, output) => {
+    parse.parse(csvString, { relax_column_count: true },(err, output) => {
       if (err) {
         console.error(err);
         return;
       }
 
-      resolve(output);
+      resolve({
+        csv: output,
+        previewData: previewData
+      });
     });
   });
 }
