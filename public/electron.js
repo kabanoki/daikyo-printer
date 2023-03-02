@@ -11,11 +11,12 @@ const Store = require('electron-store');
 const isMac = (process.platform === 'darwin');
 
 const store = new Store();
+let MainWindowId = 0;
 
 const url = isDev ? "http://localhost:4000"
                   : `file://${path.join(__dirname, "../build/index.html")}`;
 
-const menuTemplate = Menu.buildFromTemplate([
+const defaultMenuTemplate = Menu.buildFromTemplate([
   ...(
     isMac ? [{
       label: app.name,
@@ -52,17 +53,19 @@ const menuTemplate = Menu.buildFromTemplate([
     ]
   }
 ]);
-Menu.setApplicationMenu(menuTemplate);
+Menu.setApplicationMenu(defaultMenuTemplate);
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 900,
+    width: 850,
+    height: 850,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
+  MainWindowId = mainWindow.id;
+  console.log('mainWindow', mainWindow.id)
   mainWindow.loadURL(url);
 }
 
@@ -71,7 +74,8 @@ app.whenReady().then(() => {
   ipcMain.handle('OpenDownloadFolder', handleOpenDownloadFolder);
   ipcMain.handle('getCsvList', handleGetCsvList);
   ipcMain.handle('getPreviewData', handleGetPreviewData);
-
+  ipcMain.handle('sendRequestPrint', handleRequestPrint);
+  
   createWindow();
 
   app.on('activate', function () {
@@ -138,6 +142,10 @@ async function handleGetPreviewData(event){
   });
 }
 
+async function handleRequestPrint(event){
+  console.log('event.id', event.id);
+}
+
 
 //---------------------------------------------------------------------
 
@@ -147,10 +155,19 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
   let childWindow = new BrowserWindow({
     width: 900,
     height: 900,
+    parent:BrowserWindow.fromId(MainWindowId),
+    modal: true,
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      defaultFontFamily : {
+        standard: 'HG正楷書体-PRO',
+        serif: 'HG正楷書体-PRO',
+        sansSerif: 'HG正楷書体-PRO',
+        monospace: 'HG正楷書体-PRO'
+      }
     }
   });
+  console.log('childWindow', childWindow.id)
   childWindow.loadURL(`${url}/preview`);
 });

@@ -20,6 +20,7 @@ const Ninteisho = ({ csvData }) => {
       )
     })}
   </div>)
+  
 }
 
 export default Ninteisho

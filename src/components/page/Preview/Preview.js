@@ -3,6 +3,7 @@ import "./style.css";
 
 import Sougeibus from "./Template/Sougeibus";
 import Ninteisho from "./Template/Ninteisho";
+import Navbar from './components/Navbar/Navbar';
 
 const Preview = () => {
 
@@ -23,10 +24,16 @@ const Preview = () => {
 
   if(previewData){
     switch(previewData.type){
-      case 5 : 
-        return (<div id="preview"><Sougeibus csvData={csvData} previewData={previewData} /></div>);
-      case 7 : 
-        return (<div id="preview"><Ninteisho csvData={csvData} /></div>);  
+      case 5 : //送迎バス
+        return (<div id="preview"> 
+        <Navbar />
+        <Sougeibus csvData={csvData} previewData={previewData} />
+        </div>);
+      case 7 : //認定書
+        return (<div id="preview">
+          <Navbar />
+          <Ninteisho csvData={csvData} />
+          </div>);  
       default :
         return (<></>);  
     }

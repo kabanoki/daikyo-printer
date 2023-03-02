@@ -79,12 +79,9 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
   //selectCsvを更新する
   function clickBtn(item, index) {
-    if(window.confirm(item.name + "を起動します。\n起動するとCSVは削除されます。")){
-      setSelectCsv(item);
-      csvList.splice(index, 1);
-      setCsvList(csvList);
-      // navigate("/preview");
-    }
+    setSelectCsv(item);
+    csvList.splice(index, 1);
+    setCsvList(csvList);
   }
 
   return (
