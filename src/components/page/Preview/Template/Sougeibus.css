@@ -1,10 +1,15 @@
-body {
+body:has(#sougeibus) {
     font-size: 12px;
 }
 
 .container {
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#sougeibus .table>:not(caption)>*>* {
+    padding: 0.2rem 0.2rem;
+    border: #000 solid 1px;
 }
 
 h3.title {
@@ -15,61 +20,61 @@ h3.title {
     color: white;
 }
 
-#preview table {
+#sougeibus table {
     table-layout: fixed;
     border-collapse: collapse;
 }
 
-#preview table th {
+#sougeibus table th {
     background-color: silver;
     font-weight: 600;
 }
 
-#preview table tr .t1 {
+#sougeibus table tr .t1 {
     width: 30mm;
     padding: 2px;
 }
-#preview table tr .t2 {
+#sougeibus table tr .t2 {
     width: 10mm;
     padding: 2px;
     text-align: center;
 }
-#preview table tr .t3 {
+#sougeibus table tr .t3 {
     width: 15mm;
     padding: 2px;
 }
-#preview table tr .t4 {
+#sougeibus table tr .t4 {
     width: 20mm;
     padding: 2px;
 }
-#preview table tr .t5 {
+#sougeibus table tr .t5 {
     width: 20mm;
     padding: 2px;
 }
-#preview table tr .t6 {
+#sougeibus table tr .t6 {
     width: 8mm;
     padding: 2px;
     text-align: right;
 }
-#preview table tr .t7 {
+#sougeibus table tr .t7 {
     width: 8mm;
     padding: 2px;
     text-align: right;
 }
-#preview table tr .t8 {
+#sougeibus table tr .t8 {
     width: 8mm;
     padding: 2px;
     text-align: right;
 }
-#preview table tr .t9 {
+#sougeibus table tr .t9 {
     width: 20mm;
     padding: 2px;
 }
 
-tr.no-border {
+#sougeibus tr.no-border {
     border-width: 0;
 }
-.no-border td {
+#sougeibus .no-border td {
     border: none;
 }
 

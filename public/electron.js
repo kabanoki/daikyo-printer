@@ -5,10 +5,10 @@ const parse = require('csv-parse');
 const iconv = require('iconv-lite');
 const isDev = require("electron-is-dev");
 const Store = require('electron-store');
-const { getFontList } = require("./bundler/font.js");
 
 
 let MainWindowId = 0;
+let deleteCsvFlg = false;
 const store = new Store();
 const url = isDev ? "http://localhost:4000"
                   : `file://${path.join(__dirname, "../build/index.html")}`;     
@@ -63,7 +63,6 @@ function createWindow() {
     }
   })
   MainWindowId = mainWindow.id;
-  console.log('mainWindow', mainWindow.id)
   mainWindow.loadURL(url);
 }
 
@@ -73,6 +72,8 @@ app.whenReady().then(() => {
   ipcMain.handle('getCsvList', handleGetCsvList);
   ipcMain.handle('getPreviewData', handleGetPreviewData);
   ipcMain.handle('sendRequestPrint', handleRequestPrint);
+  ipcMain.handle('setDeleteCsvFlg', handleSetDeleteCsvFlg);
+  ipcMain.handle('getDeleteCsvFlg', handleGetDeleteCsvFlg);
   
   createWindow();
 
@@ -144,9 +145,18 @@ async function handleRequestPrint(event){
   console.log('event.id', event.id);
 }
 
+/* CSVの選択時に削除するかの設定 */
+async function handleSetDeleteCsvFlg(event, flg){
+  deleteCsvFlg = flg.data;
+}
+async function handleGetDeleteCsvFlg(){
+  return deleteCsvFlg;
+}
+
 
 //---------------------------------------------------------------------
 
+/* プレビューウィンドウの立ち上げ */
 ipcMain.on('openPreviewWindow', (event, arg) => {
   store.set('previewData', arg.data);
 
@@ -160,6 +170,5 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  console.log('childWindow', childWindow.id)
   childWindow.loadURL(`${url}/preview`);
 });

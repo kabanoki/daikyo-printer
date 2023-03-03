@@ -9,6 +9,7 @@ import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
   const[csvList, setCsvList] = useState([]);
+  const[deleteCsvFlg, setDeleteCsvFlg] = useState(false);
   
   // selectFolderが更新されたらリストを更新する
   useEffect(()=>{
@@ -66,7 +67,7 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
           type: previewType.type
         }
       });
-      setCsvList(newCsvList);
+      setCsvList(newCsvList.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')));
     }
     initCsvList();
   }, [selectFolder]);
@@ -84,8 +85,10 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
     setCsvList(csvList);
   }
 
-  function setDeleteFlg(event){
-    console.log(event);
+  function cahangeDeleteFlg(event){
+    console.log(event.target.checked);
+    setDeleteCsvFlg(event.target.checked);
+    window.electronAPI.setDeleteCsvFlg(event.target.checked);
   }
 
   return (
@@ -94,7 +97,7 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
       <div className="print-list mb-2 overflow-scroll bg-white">
           <div className="list-group">
             {/* ダイレクトメールは除外 */}
-            {csvList.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')).map((item, i) => 
+            {csvList.map((item, i) => 
               <button type="button" 
                       onClick={() => clickBtn(item, i)}
                       className="list-group-item list-group-item-action"
@@ -110,7 +113,11 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
         <div className='col-6 text-end'>
           <div className='form-check'>
             <label htmlFor="delete-flg" className='form-check-label'>            
-              <input type="checkbox" id="delete-flg" className='form-check-input' onChange={(event)=>{setDeleteFlg(event)}} /> 
+              <input type="checkbox" 
+                    id="delete-flg" 
+                    className='form-check-input' 
+                    checked={deleteCsvFlg}
+                    onChange={(event)=>{cahangeDeleteFlg(event)}} /> 
               印刷データを自動削除
             </label>
           </div>

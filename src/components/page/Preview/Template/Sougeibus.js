@@ -3,404 +3,72 @@ import "./Sougeibus.css";
 
 
 const Sougeibus = ({ csvData, previewData }) => {
-  const [group, setGroup] = useState('１号車、月２'); 
-
+  const [group, setGroup] = useState(''); 
+  const [allTotalGo, setAllTotalGo] = useState(0);
+  const [allTotalBack, setAllTotalBack] = useState(0);
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
-    console.log(csvData);
+    // console.log(csvData);
+
+    let busStopName = '';
+    let pages = [];
+    let pageNumber = 0;
+    let page = [];
+    let pageTableCount = 0;
+    let newAllTotalGo = 0;
+    let newAllTotalBack = 0;
+
+    csvData.forEach((element, i) => {
+      if(i===0) return ;
+      if(i===1) setGroup(`${element[0]} ${element[1]}`);
+
+      if(busStopName != element[2]){
+        busStopName = element[2];
+        let totalGo = 0;
+        let totalBack = 0;
+        const users = csvData.filter((csv) => busStopName == csv[2]).map((csv)=>{
+          totalGo = totalGo + Number(csv[7]);
+          totalBack = totalBack + Number(csv[8]);
+          return csv;
+        });
+
+        pageTableCount = pageTableCount + users.length;// 人数をカウント
+        pageTableCount++;// バス停の合計人数をカウント
+
+        // console.log('pageTableCount', pageTableCount);
+
+        if(pageTableCount > 25) {
+          pageNumber++;
+          pageTableCount = 0;
+          page = [];
+        }
+
+        // console.log(pageNumber, pageTableCount);
+        
+        page.push({
+          busStop: element[2],
+          busStopTime: element[3],
+          totalGo: totalGo,
+          totalBack: totalBack,
+          totalAnd: 0,
+          users: users
+        });
+
+        pages[pageNumber] = page;
+        // console.log(pages);
+
+        newAllTotalGo = newAllTotalGo + totalGo;
+        newAllTotalBack = newAllTotalBack + totalBack;
+
+        setPages(pages);
+      }
+    });
+
+    setAllTotalGo(newAllTotalGo);
+    setAllTotalBack(newAllTotalBack);
 
   }, [csvData]);
-  
-  useEffect(() => {
-    const createPage = async () => {
-      setPages([
-        [
-          {
-            busStop: 'ケンタッキー',
-            busStopTime: '',
-            totalGo: 2,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27940',
-                name: '中嶋優華',
-                kana: 'ﾅｶｼﾞﾏ ﾕｳｶ',
-                go: '1',
-                back: '1',
-                and: '',
-                note: ''
-              },
-              {
-                no:'27176',
-                name: '玉田莉織',
-                kana: 'ﾀﾏﾀﾞ ﾘｵ',
-                go: '1',
-                back: '1',
-                and: '',
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          }
-        ],
-        [
-          {
-            busStop: 'ケンタッキー',
-            busStopTime: '',
-            totalGo: 2,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27940',
-                name: '中嶋優華',
-                kana: 'ﾅｶｼﾞﾏ ﾕｳｶ',
-                go: '1',
-                back: '1',
-                and: '',
-                note: ''
-              },
-              {
-                no:'27176',
-                name: '玉田莉織',
-                kana: 'ﾀﾏﾀﾞ ﾘｵ',
-                go: '1',
-                back: '1',
-                and: '',
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          }
-        ],
-      ]);
-    }
-    createPage();
-  }, []);
 
   return (<div className="container">
       {pages.map((page, i) => {
@@ -453,13 +121,13 @@ const Sougeibus = ({ csvData, previewData }) => {
                                 return (<tr key={`${busStop.busStop}-${i}-${s}-${m}`}>
                                   <td className='t1'>{m===0 ? busStop.busStop:''}</td>
                                   <td className='t2'>{m===0 ? busStop.busStopTime:''}</td>
-                                  <td className='t3'>{user.no}</td>
-                                  <td className='t4'>{user.name}</td>
-                                  <td className='t5'>{user.kana}</td>
-                                  <td className='t6'>{user.go}</td>
-                                  <td className='t7'>{user.back}</td>
-                                  <td className='t8'>{user.and !== 0 ? user.and:''}</td>
-                                  <td className='t9'>{user.note}</td>
+                                  <td className='t3'>{user[4]}</td>
+                                  <td className='t4'>{user[5]}</td>
+                                  <td className='t5'>{user[6]}</td>
+                                  <td className='t6'>{user[7]}</td>
+                                  <td className='t7'>{user[8]}</td>
+                                  <td className='t8'></td>
+                                  <td className='t9'></td>
                                 </tr>);
                               })}
                               <tr className='no-border'>
@@ -497,8 +165,8 @@ const Sougeibus = ({ csvData, previewData }) => {
                             <td className='t3'></td>
                             <td className='t4'></td>
                             <td className='t5 text-center'>合計人数</td>
-                            <td className='t6'>18</td>
-                            <td className='t7'>16</td>
+                            <td className='t6'>{allTotalGo}</td>
+                            <td className='t7'>{allTotalBack}</td>
                             <td className='t8'></td>
                             <td className='t9'></td>
                           </tr>
