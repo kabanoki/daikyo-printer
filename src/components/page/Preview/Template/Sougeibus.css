@@ -73,29 +73,8 @@ tr.no-border {
     border: none;
 }
 
-.print_pages {
-    width: 172mm;
-    height: 251mm;
-    margin: 30px auto;
-    border: dotted 1px #dcdcdc;
+#sougeibus .print_pages{
+    padding: 5mm;
 }
 
-@media print {
-    @page { size: A4 } 
-    
-    .container {
-        margin-top: 0;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-    .print_pages{
-        width: 172mm;
-        height: 251mm;
-        margin: auto;
-        border: none;
-        page-break-after: always;
-    }
-    .print_pages:last-child{
-        page-break-after: auto;
-    }
-}
-    
+ 

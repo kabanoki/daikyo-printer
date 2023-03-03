@@ -25,12 +25,12 @@ const Preview = () => {
   if(previewData){
     switch(previewData.type){
       case 5 : //送迎バス
-        return (<div id="preview"> 
+        return (<div id="sougeibus"> 
         <Navbar />
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
       case 7 : //認定書
-        return (<div id="preview">
+        return (<div id="ninteisho">
           <Navbar />
           <Ninteisho csvData={csvData} />
           </div>);  

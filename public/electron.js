@@ -4,18 +4,15 @@ const fs = require('fs');
 const parse = require('csv-parse');
 const iconv = require('iconv-lite');
 const isDev = require("electron-is-dev");
-const prompt = require('electron-prompt');
 const Store = require('electron-store');
+const { getFontList } = require("./bundler/font.js");
 
 
-const isMac = (process.platform === 'darwin');
-
-const store = new Store();
 let MainWindowId = 0;
-
+const store = new Store();
 const url = isDev ? "http://localhost:4000"
-                  : `file://${path.join(__dirname, "../build/index.html")}`;
-
+                  : `file://${path.join(__dirname, "../build/index.html")}`;     
+const isMac = (process.platform === 'darwin');             
 const defaultMenuTemplate = Menu.buildFromTemplate([
   ...(
     isMac ? [{
@@ -53,12 +50,13 @@ const defaultMenuTemplate = Menu.buildFromTemplate([
     ]
   }
 ]);
-Menu.setApplicationMenu(defaultMenuTemplate);
 
 function createWindow() {
+  Menu.setApplicationMenu(defaultMenuTemplate);
+
   const mainWindow = new BrowserWindow({
-    width: 850,
-    height: 850,
+    width: 670,
+    height: 500,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
@@ -159,13 +157,7 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
     modal: true,
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js'),
-      defaultFontFamily : {
-        standard: 'HG正楷書体-PRO',
-        serif: 'HG正楷書体-PRO',
-        sansSerif: 'HG正楷書体-PRO',
-        monospace: 'HG正楷書体-PRO'
-      }
+      preload: path.join(__dirname, 'preload.js')
     }
   });
   console.log('childWindow', childWindow.id)

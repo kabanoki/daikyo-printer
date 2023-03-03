@@ -177,60 +177,6 @@ const Sougeibus = ({ csvData, previewData }) => {
                 note: ''
               },
             ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
-          },
-          {
-            busStop: '井沼（河野製紙）',
-            busStopTime: '3:26',
-            totalGo: 1,
-            totalBack: 2,
-            totalAnd: 0,
-            users: [
-              {
-                no:'27233',
-                name: '浅子諒紅',
-                kana: 'ｱｻｺ ﾘｮｳｸ',
-                go: 0,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-              {
-                no:'27934',
-                name: '若林凜奈',
-                kana: 'ﾜｶﾊﾞﾔｼ ﾘﾝﾅ',
-                go: 1,
-                back: '1',
-                and: 0,
-                note: ''
-              },
-            ],
           }
         ],
         [

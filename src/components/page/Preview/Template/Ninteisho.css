@@ -1,8 +1,3 @@
-body {
-    font-size: 12px;
-    background-color: grey !important;
-}
-
 .container {
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -17,17 +12,18 @@ body {
     position: relative;
 }
 
+
 .print_pages #rank {
-    font-family: "游ゴシック", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    font-family: "ＭＳ ゴシック";
     font-weight: bold;
     position: absolute;
     font-size: 10mm;
     top: 70mm;
-    left: 90mm;
+    left: 89mm;
 }
 
 .print_pages #name {
-    font-family: "游ゴシック", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    font-family: "ＭＳ ゴシック";
     font-weight: bold;
     position: absolute;
     font-size: 10mm;
@@ -36,10 +32,11 @@ body {
 }
 
 .print_pages #date {
+    font-family: "HGP明朝E";
     position: absolute;
     font-size: 3mm;
     top: 160mm;
-    left: 70mm;
+    left: 75mm;
 }
 
 @media print {
