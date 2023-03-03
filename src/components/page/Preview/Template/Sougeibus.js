@@ -23,11 +23,11 @@ const Sougeibus = ({ csvData, previewData }) => {
       if(i===0) return ;
       if(i===1) setGroup(`${element[0]} ${element[1]}`);
 
-      if(busStopName != element[2]){
+      if(busStopName !== element[2]){
         busStopName = element[2];
         let totalGo = 0;
         let totalBack = 0;
-        const users = csvData.filter((csv) => busStopName == csv[2]).map((csv)=>{
+        const users = csvData.filter((csv) => busStopName === csv[2]).map((csv)=>{
           totalGo = totalGo + Number(csv[7]);
           totalBack = totalBack + Number(csv[8]);
           return csv;
