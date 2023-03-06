@@ -72,21 +72,16 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
     initCsvList();
   }, [selectFolder]);
 
-  //selectCsvが更新されたらPreview Windowを開く
-  useEffect(() => {
-    if(selectCsv.id != null)
-      window.electronAPI.openPreviewWindow(selectCsv);
-  }, [selectCsv])
-
   //selectCsvを更新する
   function clickBtn(item, index) {
     setSelectCsv(item);
+    console.log(item);
+    window.electronAPI.openPreviewWindow(item);
     csvList.splice(index, 1);
     setCsvList(csvList);
   }
 
   function cahangeDeleteFlg(event){
-    console.log(event.target.checked);
     setDeleteCsvFlg(event.target.checked);
     window.electronAPI.setDeleteCsvFlg(event.target.checked);
   }

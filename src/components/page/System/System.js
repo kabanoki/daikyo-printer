@@ -2,6 +2,9 @@ import React from 'react'
 
 const Ststem = ({selectFolder, setSelectFolder}) => {
   
+
+  console.log(selectFolder);
+
   const changeFolder = async () => {
     const newFolder = await window.electronAPI.opneDownloadFolder();
     setSelectFolder(newFolder);

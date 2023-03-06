@@ -3,10 +3,6 @@ import "./Ninteisho.css";
 
 const Ninteisho = ({ csvData }) => {
 
-  useEffect(() => {
-    console.log('csvData', csvData);
-  }, [csvData]);
-
   return (<div className="container">
     {csvData.map((csv, i)=>{
       if(i===0) return;

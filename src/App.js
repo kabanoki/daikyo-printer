@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 
 import Home from './components/page/Home/Home';
@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home selectCsv={selectCsv} setSelectCsv={setSelectCsv} selectFolder={selectFolder} />}>Home</Route>
+        <Route path="/" element={<Home selectFolder={selectFolder} selectCsv={selectCsv} setSelectCsv={setSelectCsv}  />}>Home</Route>
         <Route path="/system" element={<System selectFolder={selectFolder} setSelectFolder={setSelectFolder} />}>System</Route>
         <Route path="/preview" element={<Preview />}>Preview</Route>
       </Routes>

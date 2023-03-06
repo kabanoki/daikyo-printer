@@ -9,9 +9,10 @@ const Store = require('electron-store');
 
 let MainWindowId = 0;
 let deleteCsvFlg = false;
+let previewData = '';
 const store = new Store();
 const url = isDev ? "http://localhost:4000"
-                  : `file://${path.join(__dirname, "../build/index.html")}`;     
+                  : `file://${path.join(__dirname, "../build/index.html#")}`;     
 const isMac = (process.platform === 'darwin');             
 const defaultMenuTemplate = Menu.buildFromTemplate([
   ...(
@@ -36,7 +37,8 @@ const defaultMenuTemplate = Menu.buildFromTemplate([
         label:'環境設定',
         click (menuItem, browserWindow, event)
         {
-            browserWindow.loadURL(`${url}/system`);
+          // console.log(`${url}/#/system`);
+          browserWindow.loadURL(`${url}/#/system`);
         }
       },
     ]
@@ -58,7 +60,7 @@ function createWindow() {
     width: 670,
     height: 500,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -121,10 +123,9 @@ async function handleGetCsvList() {
 }
 
 async function handleGetPreviewData(event){
+  console.log('previewData', previewData);
 
-  const previewData = store.get('previewData');
-  const filePath = previewData.filePath;
-  const csvString = iconv.decode(fs.readFileSync(filePath), 'Shift_JIS');
+  const csvString = iconv.decode(fs.readFileSync(previewData.filePath), 'Shift_JIS');
 
   return await new Promise((resolve, reject) => {
     parse.parse(csvString, { relax_column_count: true },(err, output) => {
@@ -158,7 +159,7 @@ async function handleGetDeleteCsvFlg(){
 
 /* プレビューウィンドウの立ち上げ */
 ipcMain.on('openPreviewWindow', (event, arg) => {
-  store.set('previewData', arg.data);
+  previewData = arg.data;
 
   let childWindow = new BrowserWindow({
     width: 900,
@@ -166,9 +167,10 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
     parent:BrowserWindow.fromId(MainWindowId),
     modal: true,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  childWindow.loadURL(`${url}/preview`);
+  console.log(`${url}/#/preview`);
+  childWindow.loadURL(`${url}/#/preview`);
 });
