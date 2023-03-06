@@ -24,16 +24,23 @@ const Preview = () => {
 
   if(previewData){
     switch(previewData.type){
-      case 5 : //送迎バス
+      case 'sougeibus' : //送迎バス
         return (<div id="sougeibus"> 
         <Navbar />
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
-      case 7 : //認定書
+      case 'P7' : //認定書
         return (<div id="ninteisho">
           <Navbar />
           <Ninteisho csvData={csvData} />
           </div>);  
+      case 'goukakulist' : //合格者一覧表
+      case 'syuseki' : //出欠記入表
+      case 'P3' : //合格証
+      case 'P2' : //カルテ
+      case 'P5' : //連絡カード
+      case 'P1' : //チャレンジクラス連絡カード(旧用紙)
+      case 'P8' : //チャレンジクラス連絡カード(A5用紙)
       default :
         return (<></>);  
     }

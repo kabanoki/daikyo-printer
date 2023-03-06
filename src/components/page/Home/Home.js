@@ -9,64 +9,23 @@ import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
   const[csvList, setCsvList] = useState([]);
-  const[deleteCsvFlg, setDeleteCsvFlg] = useState(false);
+  const[deleteCsvFlg, setDeleteCsvFlg] = useState(true);
   
   // selectFolderが更新されたらリストを更新する
   useEffect(()=>{
-    const previewMaster = [
-      {
-        SearchPrefix: '___PRINT_DATA_print1',
-        name: '短期ダイレクトメール',
-        type: 1
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print2',
-        name: '会員泳力記録簿',
-        type: 2
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print3',
-        name: '___PRINT_DATA_print3',
-        type: 3
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print4',
-        name: '___PRINT_DATA_print4',
-        type: 4
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print5',
-        name: '送迎バス一覧',
-        type: 5
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print6',
-        name: '___PRINT_DATA_print6',
-        type: 6
-      },
-      {
-        SearchPrefix: '___PRINT_DATA_print7',
-        name: '認定証',
-        type: 7
-      },
-    ];
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
-      
-      const setPreviewTypes = (item) => {
-        return previewMaster.find(preview => item.startsWith(preview.SearchPrefix));
-      }
 
       const newCsvList = await list.map((item, index)=>{
-        let previewType = setPreviewTypes(item);
         return {
           id: index+1,
-          name: previewType.name,
-          fileName: item,
-          filePath: [selectFolder, item].join("\\"),
-          type: previewType.type
+          name: item.name,
+          fileName: item.fileName,
+          filePath: [selectFolder, item.fileName].join("\\"),
+          type: item.type
         }
       });
+
       setCsvList(newCsvList.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')));
     }
     initCsvList();
@@ -75,10 +34,12 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
   //selectCsvを更新する
   function clickBtn(item, index) {
     setSelectCsv(item);
-    console.log(item);
     window.electronAPI.openPreviewWindow(item);
-    csvList.splice(index, 1);
-    setCsvList(csvList);
+
+    if(deleteCsvFlg){
+      csvList.splice(index, 1);
+      setCsvList(csvList);
+    }
   }
 
   function cahangeDeleteFlg(event){

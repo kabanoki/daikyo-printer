@@ -1,6 +1,6 @@
 {
   "name": "printsys",
-  "version": "0.1.0",
+  "version": "0.3.3",
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",

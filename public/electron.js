@@ -8,11 +8,11 @@ const Store = require('electron-store');
 
 
 let MainWindowId = 0;
-let deleteCsvFlg = false;
+let deleteCsvFlg = true;
 let previewData = '';
 const store = new Store();
-const url = isDev ? "http://localhost:4000"
-                  : `file://${path.join(__dirname, "../build/index.html#")}`;     
+const url = isDev ? "http://localhost:4000/"
+                  : `file://${path.join(__dirname, "../build/index.html")}`;     
 const isMac = (process.platform === 'darwin');             
 const defaultMenuTemplate = Menu.buildFromTemplate([
   ...(
@@ -37,8 +37,7 @@ const defaultMenuTemplate = Menu.buildFromTemplate([
         label:'環境設定',
         click (menuItem, browserWindow, event)
         {
-          // console.log(`${url}/#/system`);
-          browserWindow.loadURL(`${url}/#/system`);
+          browserWindow.loadURL(`${url}#/system`);
         }
       },
     ]
@@ -115,16 +114,30 @@ async function handleOpenDownloadFolder() {
 async function handleGetCsvList() {
   const downloadFolderPath = store.has('downloadPath') ? store.get('downloadPath') : app.getPath('downloads'); // ダウンロードフォルダのパスを取得
 
-  const csvFiles = await fs.readdirSync(downloadFolderPath).filter((filename) => {
-    return filename.startsWith('___PRINT_DATA_print') && path.extname(filename) === '.csv';
-  });
+  const previewDataes =  await fs.readdirSync(downloadFolderPath)
+                                .filter((filename) => {
+                                  return filename.startsWith('___PRINT_DATA_print') && path.extname(filename) === '.csv';
+                                }).map((fileName)=>{
 
-  return csvFiles;
+                                  const csvString = iconv.decode(fs.readFileSync([downloadFolderPath, fileName].join("\\")), 'Shift_JIS');
+                                  const lines = csvString.split('\n');
+                                  // console.log('lines'. lines);
+                                  const line = lines.filter((line, i) => {return i === 0});                                  
+                                  const header = line[0].split(',')
+
+                                  return {
+                                    fileName: fileName,
+                                    type:  header[0],
+                                    name: header[1]
+                                  }
+                              });
+
+  // console.log('previewDataes', previewDataes);
+
+  return previewDataes;
 }
 
 async function handleGetPreviewData(event){
-  console.log('previewData', previewData);
-
   const csvString = iconv.decode(fs.readFileSync(previewData.filePath), 'Shift_JIS');
 
   return await new Promise((resolve, reject) => {
@@ -171,6 +184,5 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  console.log(`${url}/#/preview`);
-  childWindow.loadURL(`${url}/#/preview`);
+  childWindow.loadURL(`${url}#/preview`);
 });
