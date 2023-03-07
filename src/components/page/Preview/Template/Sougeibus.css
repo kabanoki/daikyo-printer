@@ -2,7 +2,7 @@ body:has(#sougeibus) {
     font-size: 12px;
 }
 
-.container {
+#sougeibus .container {
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -12,7 +12,7 @@ body:has(#sougeibus) {
     border: #000 solid 1px;
 }
 
-h3.title {
+#sougeibus h3.title {
     text-align: center;
     border: #000 1px solid;
     padding: 5px;

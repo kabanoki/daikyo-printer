@@ -121,7 +121,6 @@ async function handleGetCsvList() {
 
                                   const csvString = iconv.decode(fs.readFileSync([downloadFolderPath, fileName].join("\\")), 'Shift_JIS');
                                   const lines = csvString.split('\n');
-                                  // console.log('lines'. lines);
                                   const line = lines.filter((line, i) => {return i === 0});                                  
                                   const header = line[0].split(',')
 

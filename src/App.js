@@ -10,7 +10,7 @@ import Preview from './components/page/Preview/Preview';
 function App() {
 
   const [selectCsv, setSelectCsv] = useState({id:null, name:'', fileName:'', filePath:''});
-  const [selectFolder, setSelectFolder] = useState('C:\\daiky\\Downloads');
+  const [selectFolder, setSelectFolder] = useState('C:\\Users\\daikyo\\Downloads');
 
   useEffect(()=>{
     const init = async () => {

@@ -3,6 +3,7 @@ import "./style.css";
 
 import Sougeibus from "./Template/Sougeibus";
 import Ninteisho from "./Template/Ninteisho";
+import Goukakusho from "./Template/Goukakusho";
 import Navbar from './components/Navbar/Navbar';
 
 const Preview = () => {
@@ -34,11 +35,15 @@ const Preview = () => {
           <Navbar />
           <Ninteisho csvData={csvData} />
           </div>);  
-      case 'goukakulist' : //合格者一覧表
-      case 'syuseki' : //出欠記入表
       case 'P3' : //合格証
+      return (<div id="goukakusho">
+          <Navbar />
+          <Goukakusho csvData={csvData} />
+      </div>);
       case 'P2' : //カルテ
       case 'P5' : //連絡カード
+      case 'goukakulist' : //合格者一覧表
+      case 'syuseki' : //出欠記入表
       case 'P1' : //チャレンジクラス連絡カード(旧用紙)
       case 'P8' : //チャレンジクラス連絡カード(A5用紙)
       default :

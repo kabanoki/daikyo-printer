@@ -1,9 +1,9 @@
-#ninteisho .container {
+#goukakusho .container {
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#ninteisho .print_pages {
+#goukakusho .print_pages {
     width: 172mm;
     height: 251mm;
     margin: 30px auto;
@@ -13,54 +13,72 @@
 }
 
 
-#ninteisho .print_pages #rank {
+#goukakusho .print_pages #rank {
     font-family: "ＭＳ ゴシック";
     font-weight: bold;
     position: absolute;
-    font-size: 11mm;
-    top: 70mm;
-    right: 77mm;
+    font-size: 10mm;
+    top: 58mm;
+    right: 95mm;
 }
 
-#ninteisho .print_pages #name {
-    font-family: "ＭＳ ゴシック";
-    font-weight: 600;
-    position: absolute;
-    font-size: 11mm;
-    top: 85mm;
-    right: 64mm;
-}
-
-#ninteisho .print_pages #date {
-    font-family: "ＭＳ 明朝";
-    position: absolute;
+#goukakusho .print_pages #number {
+    font-family: "HGP明朝E";
     font-weight: normal;
-    font-size: 3.5mm;
-    top: 160mm;
-    right: 72mm;
+    position: absolute;
+    font-size: 4mm;
+    top: 70mm;
+    right: 100mm;
+}
+
+#goukakusho .print_pages #weekName {
+    font-family: "ＭＳ ゴシック";
+    font-weight: normal;
+    position: absolute;
+    font-size: 4mm;
+    top: 70mm;
+    right: 86mm;
+}
+
+#goukakusho .print_pages #name {
+    font-family: "HG正楷書体-PRO";
+    font-weight: 500;
+    position: absolute;
+    font-size: 15mm;
+    top: 77mm;
+    right: 43mm;
     text-shadow: 0.5px 0.5px 0.5px;
+}
+
+#goukakusho .print_pages #date {
+    font-family: "ＭＳ ゴシック";
+    font-weight: 500;
+    position: absolute;
+    font-size: 4.5mm;
+    top: 160mm;
+    right: 26mm;
 }
 
 @media print {
     @page { size: A4 } 
 
-    body:has(#ninteisho) {
+    body:has(#goukakusho ) {
         font-size: 12px;
         background-color: white !important;
     }
     
-    #ninteisho .container {
+    #goukakusho .container {
         margin-top: 0;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
-    #ninteisho .print_pages{
+    #goukakusho .print_pages{
         width: 172mm;
         height: 251mm;
         margin: auto;
         border: none;
         page-break-after: always;
     }
-    #ninteisho .print_pages:last-child{
+    #goukakusho .print_pages:last-child{
         page-break-after: auto;
     }
 }
