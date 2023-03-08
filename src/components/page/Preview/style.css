@@ -19,7 +19,8 @@
 
 body:has(#sougeibus),
 body:has(#ninteisho),
-body:has(#goukakusho) {
+body:has(#goukakusho),
+body:has(#goukakulist) {
     font-size: 12px;
     background-color: grey !important;
 }

@@ -2,6 +2,15 @@ body:has(#sougeibus) {
     font-size: 12px;
 }
 
+#sougeibus .print_pages {
+    width: 172mm;
+    height: 251mm;
+    margin: 30px auto;
+    border: dotted 1px #dcdcdc;
+    background-color: white;
+    position: relative;
+}
+
 #sougeibus .container {
     margin-top: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

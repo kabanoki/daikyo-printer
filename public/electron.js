@@ -91,13 +91,14 @@ app.on('window-all-closed', function () {
 
 
 //---------------------------------------------------------------------
-
+/* 初期パラーメターを渡す */
 async function handleInitStore() {
   return {
     downloadPath: store.has('downloadPath') ? store.get('downloadPath') : app.getPath('downloads')
   };
 }
 
+/* フォルダーの選択ダイアログを起動する */
 async function handleOpenDownloadFolder() {
   let result = "";
   await dialog.showOpenDialog({
@@ -111,6 +112,10 @@ async function handleOpenDownloadFolder() {
   return result;
 }
 
+/* 
+指定フォルダの中にあるCSVで「___PRINT_DATA_print」がつくファイル一覧を取得し
+CSVの1行目にある出力名をオブジェクトとして、配列で返す
+*/
 async function handleGetCsvList() {
   const downloadFolderPath = store.has('downloadPath') ? store.get('downloadPath') : app.getPath('downloads'); // ダウンロードフォルダのパスを取得
 
@@ -136,6 +141,7 @@ async function handleGetCsvList() {
   return previewDataes;
 }
 
+/* 選択されたCSVの中身を配列で返す */
 async function handleGetPreviewData(event){
   const csvString = iconv.decode(fs.readFileSync(previewData.filePath), 'Shift_JIS');
 
@@ -154,6 +160,7 @@ async function handleGetPreviewData(event){
   });
 }
 
+/* （未使用） 印刷を起動予定  */
 async function handleRequestPrint(event){
   console.log('event.id', event.id);
 }
