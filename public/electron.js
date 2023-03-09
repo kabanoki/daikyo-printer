@@ -48,8 +48,12 @@ const defaultMenuTemplate = Menu.buildFromTemplate([
       {role: 'reload', label:'再読み込み'},
       {role: 'forceReload', label:'強制再読み込み'},
       {role: 'toggleDevTools', label:'開発者ツールを表示'},
+      { type: 'separator' },
+      { role: 'zoomIn', label:'拡大' },
+      { role: 'zoomOut', label:'縮小' },
     ]
-  }
+  },
+
 ]);
 
 function createWindow() {

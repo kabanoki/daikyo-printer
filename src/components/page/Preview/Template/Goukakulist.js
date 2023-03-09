@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import Dropdown from 'react-bootstrap/Dropdown';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import "./Goukakulist.css";
 
 
 const Goukakulist = ({ csvData, previewData }) => {
   const [pages, setPages] = useState([]);
-
+  const [courses, setCourses] = useState([]);
 
   const date = new Date();
   const [day, setDay] = useState(date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2));
@@ -13,6 +15,7 @@ const Goukakulist = ({ csvData, previewData }) => {
 
     let courseName = '';
     let newPages = [];
+    let newCourses = [];
     let pageNumber = 0;
     let page = [];
     let count = 2;
@@ -28,6 +31,7 @@ const Goukakulist = ({ csvData, previewData }) => {
       if(courseName !== row[0]){
         count = count + 1.1;
         courseName = row[0];
+        newCourses.push(courseName);
         page.push([
           '',
           '',
@@ -46,10 +50,22 @@ const Goukakulist = ({ csvData, previewData }) => {
 
     console.log(newPages);
     setPages(newPages);
+    setCourses(newCourses);
   }, [csvData]);
 
-  return (
-  <div className="container">
+  return (<>
+    <Dropdown>
+      <Dropdown.Toggle variant="" id="dropdown-basic" size="sm">
+        コースリンク
+      </Dropdown.Toggle>
+        
+      <Dropdown.Menu>
+        {courses.map(course => 
+          (<AnchorLink href={`#${course}`} offset="50" className="dropdown-item">{course}</AnchorLink>)
+        )}
+      </Dropdown.Menu>
+    </Dropdown>
+    <div className="container">
       {pages.map((page, i) => {
          return (<div className='print_pages' title={`${i+1}ページ`} key={i}>
             {i===0 && (<p className='title'>合格者一覧表</p>)}
@@ -82,7 +98,8 @@ const Goukakulist = ({ csvData, previewData }) => {
             <span className='pageNumber'>{i+1}</span>  
         </div>);
       })}
-  </div>)
+    </div>
+  </>)
 }
 
 export default Goukakulist

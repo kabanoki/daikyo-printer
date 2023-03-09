@@ -3,6 +3,13 @@ body:has(#goukakulist) {
     font-size: 8px;
 }
 
+#goukakulist .dropdown {
+    position: fixed;
+    z-index: 11;
+    top: 3px;
+    left: 15px;
+}
+
 #goukakulist .print_pages {
     width: 172mm;
     height: 251mm;
@@ -133,4 +140,10 @@ table tr .t5 {
     position: absolute;
     bottom: 8mm;
     right: 20mm;
+}
+
+@media print {
+    #goukakulist .dropdown {
+        display: none;
+    }
 }
