@@ -16,17 +16,7 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
 
-      const newCsvList = await list.map((item, index)=>{
-        return {
-          id: index+1,
-          name: item.name,
-          fileName: item.fileName,
-          filePath: [selectFolder, item.fileName].join("\\"),
-          type: item.type
-        }
-      });
-
-      setCsvList(newCsvList.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')));
+      setCsvList(list.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')));
     }
     initCsvList();
   }, [selectFolder]);

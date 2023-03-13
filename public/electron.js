@@ -126,7 +126,7 @@ async function handleGetCsvList() {
   const previewDataes =  await fs.readdirSync(downloadFolderPath)
                                 .filter((filename) => {
                                   return filename.startsWith('___PRINT_DATA_print') && path.extname(filename) === '.csv';
-                                }).map((fileName)=>{
+                                }).map((fileName, i)=>{
 
                                   const csvString = iconv.decode(fs.readFileSync([downloadFolderPath, fileName].join("\\")), 'Shift_JIS');
                                   const lines = csvString.split('\n');
@@ -135,8 +135,12 @@ async function handleGetCsvList() {
 
                                   return {
                                     fileName: fileName,
+                                    id: i+1,
                                     type:  header[0],
-                                    name: header[1]
+                                    name: header[1],
+                                    filePath: [downloadFolderPath, fileName].join("\\"),
+                                    windowWidth: header[0] == 'syuseki' ? 1000:900,
+                                    windowHeight: 900,
                                   }
                               });
 
@@ -185,8 +189,8 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
   previewData = arg.data;
 
   let childWindow = new BrowserWindow({
-    width: 900,
-    height: 900,
+    width: previewData.windowWidth,
+    height: previewData.,
     parent:BrowserWindow.fromId(MainWindowId),
     modal: true,
     webPreferences: {

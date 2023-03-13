@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
-import "./Goukakulist.css";
+import "./Syuseki.css";
 
 
 const Goukakulist = ({ csvData, previewData }) => {
@@ -54,20 +53,9 @@ const Goukakulist = ({ csvData, previewData }) => {
   }, [csvData]);
 
   return (<>
-    <Dropdown>
-      <Dropdown.Toggle variant="" id="dropdown-basic" size="sm">
-        コースリンク
-      </Dropdown.Toggle>
-        
-      <Dropdown.Menu>
-        {courses.map(course => 
-          (<AnchorLink href={`#${course}`} offset="50" className="dropdown-item" key={course}>{course}</AnchorLink>)
-        )}
-      </Dropdown.Menu>
-    </Dropdown>
     <div className="container">
       {pages.map((page, i) => {
-         return (<div className='print_pages' title={`${i+1}ページ`} key={i}>
+         return (<div className='print_pages_w' title={`${i+1}ページ`} key={i}>
             {i===0 && (<p className='title'>合格者一覧表</p>)}
             <div className='tables'>
               <div className='table-header'>

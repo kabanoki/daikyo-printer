@@ -1,5 +1,5 @@
 @media print {
-    @page { size: A4 } 
+    @page { size: A4 portrait; } 
     
     .container {
         margin-top: 0;
@@ -8,6 +8,13 @@
     .print_pages{
         width: 172mm;
         height: 251mm;
+        margin: auto;
+        border: none;
+        page-break-after: always;
+    }
+    .print_pages_w{
+        width: 251mm;
+        height: 172mm;
         margin: auto;
         border: none;
         page-break-after: always;
@@ -30,4 +37,13 @@ body:has(#goukakulist) {
     height: 251mm;
     margin: 30px auto;
     border: dotted 1px #dcdcdc;
+    background-color: white;
+}
+
+.print_pages_w {
+    width: 251mm;
+    height: 172mm;
+    margin: 30px auto;
+    border: dotted 1px #dcdcdc;
+    background-color: white;
 }
