@@ -1,6 +1,6 @@
 
 body:has(#syuseki) {
-    font-size: 10px;
+    font-size: 8.5px;
 }
 
 #syuseki .dropdown {
@@ -12,34 +12,77 @@ body:has(#syuseki) {
 
 #syuseki .container {
     margin-top: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0;
+    font-family: 'ＭＳ 明朝';
+    max-width: 251mm;
+    width: 251mm;
 }
 
 #syuseki .print_pages_w {
     padding: 25px;
     position: relative;
 }
-
-#syuseki p.title {
-    font-size: 11px;
+#syuseki .page_header{
+    font-size: 15px;
     font-weight: bold;
-    padding: 8px 15px;
     margin: 5px;
-    background-color: silver;
+}
+#syuseki .page_header div{
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+#syuseki .page_header div.weekname {
+    width: 10%;
+    border: solid 1px #0d0d0d;
+    box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+}
+
+#syuseki .page_header div.coachname {
+    width: 17%;
+    margin-left: 2%;
+    border-right: solid 1px #0d0d0d;
+    border-bottom: solid 1px #0d0d0d;
+    box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 4px 5px 0px 0px rgba(0,0,0,1);
+}
+
+#syuseki .page_header div.title {
+    font-size: 18px;
+    width: 42%;
+    padding: 2px 4%;
+    margin-left: 6%;
+    background-color: #bbb;
+    border: 1px solid #0d0d0d;
+    color: white;
+}
+
+#syuseki .page_header div.title div {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'ＭＳ ゴシック';
+}
+
+#syuseki .page_header div.title div .title-month {
     color: black;
 }
 
 #syuseki .tables {}
 
 #syuseki .table-header {
-    font-size: 10px;
+    font-size: 9px;
     display: grid;
-    grid-template-columns: 18mm 35mm 23mm 38mm 12mm 12mm;
+    margin: 0 5px;
+    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 4% 4% 4% 4% 4% 4% 25%;
     font-weight: bold;
 }
 #syuseki .table-body .table-row{
     display: grid;
-    grid-template-columns: 18mm 35mm 23mm 38mm 12mm 12mm;
+    margin: 0 5px;
+    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 4% 4% 4% 4% 4% 4% 25%;
     border-bottom: 1px solid #dcdcdc;
 }
 
@@ -47,125 +90,80 @@ body:has(#syuseki) {
     text-align: center;
 }
 
+#syuseki .table-header > div,
 #syuseki .table-body .table-row > div{
     display: block;
-    padding: 0 7px;
+    border-top: solid 1px #0d0d0d;
+    border-right: solid 1px #0d0d0d;
+    padding-left: 3%;
+}
+
+#syuseki .table-header > div:first-of-type,
+#syuseki .table-body .table-row > div:first-of-type{
+    border-left: solid 1px #0d0d0d;
+}
+
+#syuseki .table-body .table-row:first-of-type > div{
+    border-top: solid 3px #0d0d0d;
+}
+
+#syuseki .table-body .table-row:last-of-type > div{
+    border-bottom: solid 1px #0d0d0d;
 }
 
 #syuseki .t1 {
-    width: 15mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t2 {
-    width: 35mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t3 {
-    width: 21mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t4 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t5 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t6 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t7 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t8 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t9 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t10 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t11 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t12 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t13 {
-    width: 38mm;
-    padding: 2px;
     display: table-cell;
     vertical-align: middle;
 }
 #syuseki .t14 {
-    width: 38mm;
-    padding: 2px;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-#syuseki .table-body .courseName {
-    background-color: silver;
-    border: 1px solid #000;
-    padding: 0;
-    margin-bottom: 6px;
-}
-
-#syuseki .table-body .table-row.courseName .t4 span {
-    background-color: white;
-    font-size: 10px;
-    font-weight: 600;
-    display: inline-block;
-    width: 15mm;
-    outline: 3px solid;
-    box-shadow: 5px 4px 0px 0px #000;
-
-}
-
-table tr .t5 {
-    width: 12mm;
-    padding: 2px;
-    text-align: right;
-    display: table-cell;
-    vertical-align: middle;
-}
-#syuseki .t6 {
-    width: 12mm;
-    padding: 2px;
-    text-align: right;
     display: table-cell;
     vertical-align: middle;
 }
@@ -178,20 +176,19 @@ table tr .t5 {
     border: none;
 }
 
-#syuseki .print_pages{
-    padding: 7.8mm 15mm;
+#syuseki .print_pages_w{
     position: relative;
 }
 
-#syuseki .print_pages > .date{
+#syuseki .print_pages_w > .date{
     position: absolute;
-    bottom: 8mm;
-    right: 140mm;
+    bottom: 5mm;
+    right: 225mm;
 }
 
-#syuseki .print_pages > .pageNumber{
+#syuseki .print_pages_w > .pageNumber{
     position: absolute;
-    bottom: 8mm;
+    bottom: 5mm;
     right: 20mm;
 }
 

@@ -139,7 +139,7 @@ async function handleGetCsvList() {
                                     type:  header[0],
                                     name: header[1],
                                     filePath: [downloadFolderPath, fileName].join("\\"),
-                                    windowWidth: header[0] == 'syuseki' ? 1000:900,
+                                    windowWidth: header[0] == 'syuseki' ? 1100:900,
                                     windowHeight: 900,
                                   }
                               });
@@ -190,7 +190,7 @@ ipcMain.on('openPreviewWindow', (event, arg) => {
 
   let childWindow = new BrowserWindow({
     width: previewData.windowWidth,
-    height: previewData.,
+    height: previewData.windowHeight,
     parent:BrowserWindow.fromId(MainWindowId),
     modal: true,
     webPreferences: {

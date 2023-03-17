@@ -1,18 +1,18 @@
 @media print {
     @page { size: A4 portrait; } 
     
-    .container {
-        margin-top: 0;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    div.container {
+        margin-top: 0 !important;
+        padding: 0;
     }
-    .print_pages{
+    div.print_pages{
         width: 172mm;
         height: 251mm;
         margin: auto;
         border: none;
         page-break-after: always;
     }
-    .print_pages_w{
+    div.print_pages_w {
         width: 251mm;
         height: 172mm;
         margin: auto;

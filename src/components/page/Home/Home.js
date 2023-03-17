@@ -16,7 +16,15 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
 
-      setCsvList(list.filter((item)=>!item.fileName.startsWith('___PRINT_DATA_print1')));
+      setCsvList(list.filter((item)=>{
+        return (
+          !item.fileName.startsWith('___PRINT_DATA_print1')
+          && item.type != 'P2' 
+          && item.type != 'P5' 
+          && item.type != 'P1' 
+          && item.type != 'P8' 
+        )
+      }));
     }
     initCsvList();
   }, [selectFolder]);
@@ -42,7 +50,6 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
       <p className='ms-3 pt-4 mb-2 title fw-bold'>印刷選択</p>
       <div className="print-list mb-2 overflow-scroll bg-white">
           <div className="list-group">
-            {/* ダイレクトメールは除外 */}
             {csvList.map((item, i) => 
               <button type="button" 
                       onClick={() => clickBtn(item, i)}
