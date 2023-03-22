@@ -169,8 +169,25 @@ async function handleGetPreviewData(event){
 }
 
 /* （未使用） 印刷を起動予定  */
-async function handleRequestPrint(event){
-  console.log('event.id', event.id);
+async function handleRequestPrint(event, options){
+  let wc;
+  const mainWindow = BrowserWindow.fromId(MainWindowId);
+  mainWindow.getChildWindows().forEach(function(w){
+    wc = w.webContents;
+  });
+
+  options = {
+    ...options,
+    silent: false,
+    margins: {
+      marginType: 'none'
+    }
+  }
+  console.log(options);
+
+  wc.print(options, (success, errorType) => {
+    if (!success) console.log(errorType)
+  });
 }
 
 /* CSVの選択時に削除するかの設定 */

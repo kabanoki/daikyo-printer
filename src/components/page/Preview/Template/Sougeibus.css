@@ -91,4 +91,24 @@ body:has(#sougeibus) {
     padding: 5mm;
 }
 
- 
+@media print {
+    @page { size: A4 !important; } 
+
+    body:has(#sougeibus) {
+        width: 172mm;
+        height: 251mm;
+        background-color: white !important;
+    }
+
+    #sougeibus .print_pages{
+        width: 172mm;
+        height: 251mm;
+        margin: auto;
+        border: none;
+        page-break-after: always;
+    }
+
+    #sougeibus .print_pages:last-child{
+        page-break-after: auto;
+    }
+}

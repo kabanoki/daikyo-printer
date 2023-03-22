@@ -29,27 +29,27 @@ const Preview = () => {
     switch(previewData.type){
       case 'sougeibus' : //送迎バス
         return (<div id="sougeibus"> 
-        <Navbar />
+        <Navbar pageSize={'A4'} landscape={false}  />
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
       case 'P7' : //認定書
         return (<div id="ninteisho">
-          <Navbar />
+          <Navbar pageSize={'A5'} landscape={false} />
           <Ninteisho csvData={csvData} />
           </div>);  
       case 'P3' : //合格証
         return (<div id="goukakusho">
-            <Navbar />
+            <Navbar pageSize={'A5'} landscape={false} />
             <Goukakusho csvData={csvData} />
         </div>);
       case 'goukakulist' : //合格者一覧表
         return (<div id="goukakulist"> 
-          <Navbar />
+          <Navbar pageSize={'A4'} landscape={false} />
           <Goukakulist csvData={csvData} previewData={previewData} />
           </div>);
       case 'syuseki' : //出欠記入表
         return (<div id="syuseki"> 
-          <Navbar />
+          <Navbar pageSize={'A4'} landscape={true} />
           <Syuseki csvData={csvData} previewData={previewData} />
           </div>);
       case 'P2' : //カルテ

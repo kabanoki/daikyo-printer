@@ -4,8 +4,8 @@
 }
 
 #goukakusho .print_pages {
-    width: 172mm;
-    height: 251mm;
+    width: 148mm;
+    height: 210mm;
     margin: 30px auto;
     border: dotted 1px #dcdcdc;
     background-color: white;
@@ -17,18 +17,18 @@
     font-family: "ＭＳ ゴシック";
     font-weight: bold;
     position: absolute;
-    font-size: 10mm;
-    top: 58mm;
-    right: 95mm;
+    font-size: 9mm;
+    top: 57mm;
+    right: 81mm;
 }
 
 #goukakusho .print_pages #number {
     font-family: "HGP明朝E";
     font-weight: normal;
     position: absolute;
-    font-size: 4mm;
-    top: 70mm;
-    right: 100mm;
+    font-size: 3.5mm;
+    top: 69mm;
+    right: 86mm;
 }
 
 #goukakusho .print_pages #weekName {
@@ -36,17 +36,17 @@
     font-weight: normal;
     position: absolute;
     font-size: 4mm;
-    top: 70mm;
-    right: 86mm;
+    top: 68.5mm;
+    right: 72mm;
 }
 
 #goukakusho .print_pages #name {
     font-family: "HG正楷書体-PRO";
-    font-weight: 500;
+    font-weight: bold;
     position: absolute;
-    font-size: 15mm;
-    top: 77mm;
-    right: 43mm;
+    font-size: 13mm;
+    top: 74mm;
+    right: 36mm;
     text-shadow: 0.5px 0.5px 0.5px;
 }
 
@@ -54,27 +54,31 @@
     font-family: "ＭＳ ゴシック";
     font-weight: 500;
     position: absolute;
-    font-size: 4.5mm;
-    top: 160mm;
-    right: 26mm;
+    font-size: 4mm;
+    top: 142mm;
+    right: 20mm;
 }
 
 @media print {
-    @page { size: A4 } 
+    @page { size: A5 !important; } 
 
     body:has(#goukakusho ) {
         font-size: 12px;
+        width: 148mm;
+        margin: 0;
+        padding: 0;
         background-color: white !important;
     }
     
     #goukakusho .container {
         margin-top: 0;
+        padding: 0;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
     #goukakusho .print_pages{
-        width: 172mm;
-        height: 251mm;
-        margin: auto;
+        width: 148mm;
+        height: 208mm;
+        margin: 0;
         border: none;
         page-break-after: always;
     }
