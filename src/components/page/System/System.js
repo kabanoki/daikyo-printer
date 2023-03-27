@@ -2,7 +2,7 @@ import React from 'react'
 
 const Ststem = ({selectFolder, setSelectFolder}) => {
   
-
+  document.title = `環境設定｜E-Printsys`;
   console.log(selectFolder);
 
   const changeFolder = async () => {

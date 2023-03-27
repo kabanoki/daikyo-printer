@@ -41,30 +41,35 @@ const Preview = () => {
     switch(previewData.type){
       case 'sougeibus' : //送迎バス
         setpageSize('A4');
+        document.title = `送迎バス｜E-Printsys`;
         return (<div id="sougeibus"> 
         <Navbar pageSize={'A4'} landscape={false}  />
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
       case 'P7' : //認定書
         setpageSize('A5');
+        document.title = `認定書｜E-Printsys`;
         return (<div id="ninteisho">
           <Navbar pageSize={'A5'} landscape={false} />
           <Ninteisho csvData={csvData} />
           </div>);  
       case 'P3' : //合格証
         setpageSize('A5');
+        document.title = `合格証｜E-Printsys`;
         return (<div id="goukakusho">
             <Navbar pageSize={'A5'} landscape={false} />
             <Goukakusho csvData={csvData} />
         </div>);
       case 'goukakulist' : //合格者一覧表
         setpageSize('A4');
+        document.title = `合格者一覧表｜E-Printsys`;
         return (<div id="goukakulist"> 
           <Navbar pageSize={'A4'} landscape={false} />
           <Goukakulist csvData={csvData} previewData={previewData} />
           </div>);
       case 'syuseki' : //出欠記入表
         setpageSize('A4 landscape');
+        document.title = `出欠記入表｜E-Printsys`;
         return (<div id="syuseki"> 
           <Navbar pageSize={'A4'} landscape={true} />
           <Syuseki csvData={csvData} previewData={previewData} />
@@ -74,6 +79,7 @@ const Preview = () => {
       case 'P1' : //チャレンジクラス連絡カード(旧用紙)
       case 'P8' : //チャレンジクラス連絡カード(A5用紙)
       default :
+        document.title = `エラーページ｜E-Printsys`;
         return (<></>);  
     }
   } 

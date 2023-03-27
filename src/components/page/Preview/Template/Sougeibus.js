@@ -7,6 +7,9 @@ const Sougeibus = ({ csvData, previewData }) => {
   const [allTotalGo, setAllTotalGo] = useState(0);
   const [allTotalBack, setAllTotalBack] = useState(0);
   const [pages, setPages] = useState([]);
+  const date = new Date();
+  const [day, setDay] = useState(date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2));
+
 
   useEffect(() => {
     // console.log(csvData);
@@ -38,7 +41,7 @@ const Sougeibus = ({ csvData, previewData }) => {
 
         // console.log('pageTableCount', pageTableCount);
 
-        if(pageTableCount > 33) {
+        if(pageTableCount > 28) {
           pageNumber++;
           pageTableCount = 0;
           page = [];
@@ -173,7 +176,8 @@ const Sougeibus = ({ csvData, previewData }) => {
                         </tbody>  
                       </table>
                     ):''}
-                    
+          <span className='date'>{day}</span>
+          <span className='pageNumber'>{i+1}</span>   
         </div>);
       })}
   </div>)

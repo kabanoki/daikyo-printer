@@ -1,5 +1,5 @@
 body:has(#sougeibus) {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #sougeibus .print_pages {
@@ -85,6 +85,18 @@ body:has(#sougeibus) {
 }
 #sougeibus .no-border td {
     border: none;
+}
+
+#sougeibus .print_pages > .date{
+    position: absolute;
+    bottom: 8mm;
+    right: 175mm;
+}
+
+#sougeibus .print_pages > .pageNumber{
+    position: absolute;
+    bottom: 8mm;
+    right: 16mm;
 }
 
 #sougeibus .print_pages{

@@ -8,6 +8,8 @@ import { faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
+  document.title = `ホーム｜E-Printsys`;
+
   const[csvList, setCsvList] = useState([]);
   const[deleteCsvFlg, setDeleteCsvFlg] = useState(true);
   
