@@ -195,7 +195,7 @@ body:has(#syuseki) {
     right: 20mm;
 }
 
-@page { size: A4 landscape !important; } 
+/* @page { size: A4 landscape !important; }  */
 @media print {
     body:has(#syuseki) {
         width: 297mm ;

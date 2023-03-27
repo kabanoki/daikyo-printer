@@ -135,7 +135,7 @@ body:has(#goukakulist) {
     right: 16mm;
 }
 
-@page { size: A4 !important; }
+/* @page { size: A4 !important; } */
 @media print {
 
     body:has(#goukakulist) {

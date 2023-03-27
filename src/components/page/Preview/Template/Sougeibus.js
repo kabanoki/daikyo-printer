@@ -38,7 +38,7 @@ const Sougeibus = ({ csvData, previewData }) => {
 
         // console.log('pageTableCount', pageTableCount);
 
-        if(pageTableCount > 25) {
+        if(pageTableCount > 33) {
           pageNumber++;
           pageTableCount = 0;
           page = [];

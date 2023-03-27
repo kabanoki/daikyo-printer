@@ -72,7 +72,7 @@
     right: 13%;
 }
 
-@page goukakusho{ size: A5 !important; } 
+/* @page goukakusho{ size: A5 !important; }  */
 @media print {
 
     body:has(#goukakusho) {

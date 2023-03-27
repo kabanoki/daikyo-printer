@@ -15,14 +15,14 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
   useEffect(()=>{
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
-
+      console.log(list);
       setCsvList(list.filter((item)=>{
         return (
           !item.fileName.startsWith('___PRINT_DATA_print1')
-          && item.type != 'P2' 
-          && item.type != 'P5' 
-          && item.type != 'P1' 
-          && item.type != 'P8' 
+          && item.type !== 'P2' 
+          && item.type !== 'P5' 
+          && item.type !== 'P1' 
+          && item.type !== 'P8' 
         )
       }));
     }

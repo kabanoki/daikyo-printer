@@ -43,7 +43,7 @@
     text-shadow: 0.5px 0.5px 0.5px;
 }
 
-@page { size: A5 !important; } 
+/* @page { size: A5 !important; }  */
 @media print {
     body:has(#ninteisho) {
         font-size: 12px;
