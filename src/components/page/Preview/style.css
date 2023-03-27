@@ -1,6 +1,4 @@
 @media print {
-    @page { size: A4 portrait; } 
-
     body{
         background-color: white;
         padding: 0mm !important;  
@@ -14,7 +12,8 @@
     div.print_pages{
         width: 172mm;
         height: 251mm;
-        margin: auto;
+        margin: 0px;
+        padding: 0px;
         border: none;
         page-break-after: always;
     }
@@ -36,6 +35,8 @@ body:has(#goukakusho),
 body:has(#goukakulist) {
     font-size: 12px;
     background-color: grey !important;
+    margin: 0px;
+    padding: 0px;
 }
 
 .print_pages {

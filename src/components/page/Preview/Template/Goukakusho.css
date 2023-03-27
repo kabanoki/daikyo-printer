@@ -1,11 +1,14 @@
 #goukakusho .container {
     margin-top: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    max-width: 210mm !important;
+    min-width: 210mm !important;
 }
 
 #goukakusho .print_pages {
-    width: 148mm;
-    height: 210mm;
+    /* width: 148mm;
+    height: 210mm; */
+    height: 297mm;
+    width: 210mm;
     margin: 30px auto;
     border: dotted 1px #dcdcdc;
     background-color: white;
@@ -17,73 +20,90 @@
     font-family: "ＭＳ ゴシック";
     font-weight: bold;
     position: absolute;
-    font-size: 9mm;
-    top: 57mm;
-    right: 81mm;
+    font-size: 3.5em;
+    /* top: 57mm;
+    right: 81mm; */
+    top: 25%;
+    right: 54%;
 }
 
 #goukakusho .print_pages #number {
     font-family: "HGP明朝E";
     font-weight: normal;
     position: absolute;
-    font-size: 3.5mm;
-    top: 69mm;
-    right: 86mm;
+    font-size: 1.5em;
+    /* top: 69mm;
+    right: 86mm; */
+    top: 30%;
+    right: 57%;
 }
 
 #goukakusho .print_pages #weekName {
     font-family: "ＭＳ ゴシック";
     font-weight: normal;
     position: absolute;
-    font-size: 4mm;
-    top: 68.5mm;
-    right: 72mm;
+    font-size: 1.8em;
+    /* top: 68.5mm;
+    right: 72mm; */
+    top: 29.5%;
+    right: 48%;
 }
 
 #goukakusho .print_pages #name {
     font-family: "HG正楷書体-PRO";
     font-weight: bold;
     position: absolute;
-    font-size: 13mm;
-    top: 74mm;
-    right: 36mm;
-    text-shadow: 0.5px 0.5px 0.5px;
+    font-size: 5.6em;
+    /* top: 74mm;
+    right: 36mm; */
+    top: 33%;
+    right: 24%;
+    /* text-shadow: 0.5px 0.5px 0.5px; */
 }
 
 #goukakusho .print_pages #date {
     font-family: "ＭＳ ゴシック";
-    font-weight: 500;
+    font-weight: normal;
     position: absolute;
-    font-size: 4mm;
-    top: 142mm;
-    right: 20mm;
+    font-size: 1.8em;
+    /* top: 142mm;
+    right: 20mm; */
+    top: 67%;
+    right: 13%;
 }
 
 @media print {
     @page { size: A5 !important; } 
 
-    body:has(#goukakusho ) {
+    body:has(#goukakusho) {
         font-size: 12px;
-        width: 148mm;
-        margin: 0;
-        padding: 0;
-        background-color: white !important;
+        width: 210mm;
+        margin: 0px;
+        padding: 0px;
+        /* background-color: white !important; */
     }
     
     #goukakusho .container {
-        margin-top: 0;
-        padding: 0;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        max-width: 210mm !important;
+        min-width: 148mm !important;
     }
     #goukakusho .print_pages{
-        width: 148mm;
-        height: 208mm;
-        margin: 0;
+        width: 100%;
+        height: 297mm;
+        margin: 0px;
+        padding: 0px;
         border: none;
         page-break-after: always;
     }
     #goukakusho .print_pages:last-child{
         page-break-after: auto;
+    }
+
+    #goukakulist .dropdown {
+        display: none;
     }
 }
     

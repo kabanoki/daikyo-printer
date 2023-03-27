@@ -48,6 +48,7 @@ const Preview = () => {
           <Goukakulist csvData={csvData} previewData={previewData} />
           </div>);
       case 'syuseki' : //出欠記入表
+        const obj = {height: '516mm', width: '753mm'};
         return (<div id="syuseki"> 
           <Navbar pageSize={'A4'} landscape={true} />
           <Syuseki csvData={csvData} previewData={previewData} />

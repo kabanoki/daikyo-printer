@@ -139,8 +139,8 @@ async function handleGetCsvList() {
                                     type:  header[0],
                                     name: header[1],
                                     filePath: [downloadFolderPath, fileName].join("\\"),
-                                    windowWidth: header[0] == 'syuseki' ? 1100:900,
-                                    windowHeight: 900,
+                                    windowWidth: header[0] == 'syuseki' ? 1100:1000,
+                                    windowHeight: header[0] == 'syuseki' ? 900:1200,
                                   }
                               });
 
@@ -178,10 +178,11 @@ async function handleRequestPrint(event, options){
 
   options = {
     ...options,
-    silent: false,
+    silent: true,
     margins: {
       marginType: 'none'
-    }
+    },
+    printBackground: true
   }
   console.log(options);
 
