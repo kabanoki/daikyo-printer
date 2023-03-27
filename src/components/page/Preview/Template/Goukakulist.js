@@ -48,7 +48,6 @@ const Goukakulist = ({ csvData, previewData }) => {
       newPages[pageNumber] = page;
     });
 
-    console.log(newPages);
     setPages(newPages);
     setCourses(newCourses);
   }, [csvData]);

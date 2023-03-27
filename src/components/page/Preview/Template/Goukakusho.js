@@ -3,8 +3,6 @@ import "./Goukakusho.css";
 
 const Goukakusho = ({ csvData }) => {
 
-  console.log(csvData);
-
   return (<div className="container">
     {csvData.filter((csv, i) => i !== 0 ).map((csv, i)=>{
      return (

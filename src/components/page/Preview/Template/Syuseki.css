@@ -195,14 +195,13 @@ body:has(#syuseki) {
     right: 20mm;
 }
 
+@page { size: A4 landscape !important; } 
 @media print {
-    @page { size: A4 landscape !important; } 
-
     body:has(#syuseki) {
         width: 297mm ;
         margin: 0px !important;
         padding: 0px !important;
-        /* background-color: white !important; */
+        background-color: white !important;
     }
 
     #syuseki .container {

@@ -16,11 +16,11 @@
 
 #ninteisho .print_pages #rank {
     font-family: "ＭＳ ゴシック";
-    font-weight: bold;
+    font-weight: 600;
     position: absolute;
-    font-size: 9mm;
-    top: 61mm;
-    right: 68mm;
+    font-size: 3.9em;
+    top: 31%;
+    right: 44%;
 }
 
 #ninteisho .print_pages #name {
@@ -28,30 +28,29 @@
     font-weight: 600;
     position: absolute;
     /* font-size: 9mm; */
-    font-size: 9mm;
-    top: 75mm;
-    right: 57mm;
+    font-size: 3.9em;
+    top: 38%;
+    right: 37%;
 }
 
 #ninteisho .print_pages #date {
     font-family: "ＭＳ 明朝";
     position: absolute;
     font-weight: normal;
-    font-size: 3mm;
-    top: 136mm;
-    right: 63mm;
+    font-size: 1.4em;
+    top: 66%;
+    right: 42%;
     text-shadow: 0.5px 0.5px 0.5px;
 }
 
+@page { size: A5 !important; } 
 @media print {
-    @page { size: A5 !important; } 
-
     body:has(#ninteisho) {
         font-size: 12px;
         width: 210mm;
         margin: 0px;
         padding: 0px;
-        /* background-color: white !important; */
+        background-color: white !important;
     }
     
     #ninteisho .container {

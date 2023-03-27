@@ -135,8 +135,8 @@ body:has(#goukakulist) {
     right: 16mm;
 }
 
+@page { size: A4 !important; }
 @media print {
-    @page { size: A4 !important; }
 
     body:has(#goukakulist) {
         width: 210mm ;

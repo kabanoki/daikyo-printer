@@ -5,7 +5,6 @@ import { faPrint, faXmark  } from '@fortawesome/free-solid-svg-icons'
 import "./style.css";
 
 const Navbar = ({pageSize, landscape}) => {
-  console.log(pageSize, landscape);
   return (
     <nav id="previewbar">
       <button onClick={()=>{window.electronAPI.sendRequestPrint(pageSize, landscape)}}><FontAwesomeIcon icon={faPrint} /> 印刷する</button>

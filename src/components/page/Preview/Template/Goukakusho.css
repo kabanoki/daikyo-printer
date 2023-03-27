@@ -72,15 +72,15 @@
     right: 13%;
 }
 
+@page goukakusho{ size: A5 !important; } 
 @media print {
-    @page { size: A5 !important; } 
 
     body:has(#goukakusho) {
         font-size: 12px;
         width: 210mm;
         margin: 0px;
         padding: 0px;
-        /* background-color: white !important; */
+        background-color: white !important;
     }
     
     #goukakusho .container {
