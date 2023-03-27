@@ -6,7 +6,7 @@ import Ninteisho from "./Template/Ninteisho";
 import Goukakusho from "./Template/Goukakusho";
 import Goukakulist from "./Template/Goukakulist";
 import Syuseki from "./Template/Syuseki";
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';// 必ず最後に指定する｜@pageは設定しない
 
 const Preview = () => {
 
