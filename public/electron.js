@@ -75,10 +75,13 @@ app.whenReady().then(() => {
   ipcMain.handle('initStore', handleInitStore);
   ipcMain.handle('OpenDownloadFolder', handleOpenDownloadFolder);
   ipcMain.handle('getCsvList', handleGetCsvList);
-  ipcMain.handle('getPreviewData', handleGetPreviewData);
-  ipcMain.handle('sendRequestPrint', handleRequestPrint);
   ipcMain.handle('setDeleteCsvFlg', handleSetDeleteCsvFlg);
   ipcMain.handle('getDeleteCsvFlg', handleGetDeleteCsvFlg);
+  ipcMain.handle('getPreviewData', handleGetPreviewData);
+  ipcMain.handle('sendRequestPrint', handleRequestPrint);
+  ipcMain.handle('getPrinterList', handleGetPrinterList);
+  ipcMain.handle('setPrinter', handleSetPrinter);
+  // ipcMain.handle('getPrinter', handleGetPrinter);
   
   createWindow();
 
@@ -189,6 +192,26 @@ async function handleRequestPrint(event, options){
   wc.print(options, (success, errorType) => {
     if (!success) console.log(errorType)
   });
+}
+
+/** パソコンのプリンター一覧を表示する */
+async function handleGetPrinterList(){
+  const mainWindow = BrowserWindow.fromId(MainWindowId);
+  const selectPrinter = store.has('selectPrinter') ? store.get('selectPrinter') : {};
+  const printerInfo = await mainWindow.webContents.getPrintersAsync();
+  return printerInfo.map((printer)=>{
+    return {
+      ...printer,
+      isDefault: store.has('selectPrinter') 
+        ? selectPrinter.name === printer.name
+        : printer.isDefault
+    };
+  });
+}
+
+/** デフォルトプリンターを設定する  */
+function handleSetPrinter(event, printer){
+  store.set('selectPrinter', printer);
 }
 
 /* CSVの選択時に削除するかの設定 */
