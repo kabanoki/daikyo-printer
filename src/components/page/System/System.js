@@ -35,9 +35,8 @@ const Ststem = ({selectFolder, setSelectFolder}) => {
   const setPrinter = async (e) => {
     const printer = printerList.filter((item)=>item.displayName===e.target.value);
     setSelectPrinter(printer[0]);
-
-    const LIST= await window.electronAPI.setPrinter(printer[0]);
-    console.log(LIST);
+    //プリンターの選択を保存
+    await window.electronAPI.setPrinter(printer[0]);
   }
 
   

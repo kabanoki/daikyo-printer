@@ -89,14 +89,14 @@ body:has(#sougeibus) {
 
 #sougeibus .print_pages > .date{
     position: absolute;
-    bottom: 8mm;
-    right: 175mm;
+    top: 95%;
+    right: 84%;
 }
 
 #sougeibus .print_pages > .pageNumber{
     position: absolute;
-    bottom: 8mm;
-    right: 16mm;
+    top: 95%;
+    right: 4%;
 }
 
 #sougeibus .print_pages{

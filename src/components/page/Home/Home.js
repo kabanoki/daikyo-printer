@@ -17,7 +17,6 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
   useEffect(()=>{
     const initCsvList = async () => {
       const list = await window.electronAPI.getCsvList() || [];
-      console.log(list);
       setCsvList(list.filter((item)=>{
         return (
           !item.fileName.startsWith('___PRINT_DATA_print1')
@@ -33,12 +32,14 @@ const Home = ({ selectCsv, setSelectCsv, selectFolder }) => {
 
   //selectCsvを更新する
   function clickBtn(item, index) {
-    setSelectCsv(item);
+    // setSelectCsv(item);
     window.electronAPI.openPreviewWindow(item);
 
     if(deleteCsvFlg){
-      csvList.splice(index, 1);
-      setCsvList(csvList);
+      const newCsvList = csvList.filter((csv) => {
+        return csv.fileName !==  item.fileName
+      });
+      setCsvList(newCsvList);
     }
   }
 

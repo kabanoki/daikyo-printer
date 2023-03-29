@@ -77,6 +77,7 @@ app.whenReady().then(() => {
   ipcMain.handle('getCsvList', handleGetCsvList);
   ipcMain.handle('setDeleteCsvFlg', handleSetDeleteCsvFlg);
   ipcMain.handle('getDeleteCsvFlg', handleGetDeleteCsvFlg);
+  ipcMain.handle('deleteCsv', handleDeleteCsv);
   ipcMain.handle('getPreviewData', handleGetPreviewData);
   ipcMain.handle('sendRequestPrint', handleRequestPrint);
   ipcMain.handle('getPrinterList', handleGetPrinterList);
@@ -168,10 +169,18 @@ async function handleGetPreviewData(event){
         previewData: previewData
       });
     });
+  }).then((obj)=>{
+    if(deleteCsvFlg){
+      fs.unlink(previewData.filePath, (err) => {
+        if (err) throw err;
+        console.log('CSV file has been deleted!');
+      });
+    }
+    return obj;
   });
 }
 
-/* （未使用） 印刷を起動予定  */
+/* 印刷を起動  */
 async function handleRequestPrint(event, options){
   let wc;
   const mainWindow = BrowserWindow.fromId(MainWindowId);
@@ -179,14 +188,25 @@ async function handleRequestPrint(event, options){
     wc = w.webContents;
   });
 
+
   options = {
     ...options,
     silent: true,
     margins: {
       marginType: 'none'
     },
-    printBackground: true
+    printBackground: true,
   }
+
+  // プリンターの指定がデフォルトではない場合
+  if(store.has('selectPrinter')) {
+    const selectPrinter = store.get('selectPrinter');
+    options = {
+      ...options,
+      deviceName: selectPrinter.name
+    }
+  }
+
   console.log(options);
 
   wc.print(options, (success, errorType) => {
@@ -220,6 +240,13 @@ async function handleSetDeleteCsvFlg(event, flg){
 }
 async function handleGetDeleteCsvFlg(){
   return deleteCsvFlg;
+}
+/** CSVを削除 */
+async function handleDeleteCsv(event, csv){
+  fs.unlink(csv.filePath, (err) => {
+    if (err) throw err;
+    console.log('CSV file has been deleted!');
+  });
 }
 
 
