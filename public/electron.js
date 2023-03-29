@@ -143,8 +143,8 @@ async function handleGetCsvList() {
                                     type:  header[0],
                                     name: header[1],
                                     filePath: [downloadFolderPath, fileName].join("\\"),
-                                    windowWidth: header[0] == 'syuseki' ? 1100:1000,
-                                    windowHeight: header[0] == 'syuseki' ? 900:1200,
+                                    windowWidth: header[0] == 'syuseki' ? 1200:1000,
+                                    windowHeight: header[0] == 'syuseki' ? 950:1200,
                                   }
                               });
 
@@ -207,10 +207,14 @@ async function handleRequestPrint(event, options){
     }
   }
 
-  console.log(options);
-
-  wc.print(options, (success, errorType) => {
-    if (!success) console.log(errorType)
+  // console.log(options);
+  return await new Promise((resolve, reject) => {
+    wc.print(options, (success, errorType) => {
+      if (!success) {
+        console.log(errorType)
+      }
+      resolve({success, errorType});
+    });
   });
 }
 
@@ -222,9 +226,9 @@ async function handleGetPrinterList(){
   return printerInfo.map((printer)=>{
     return {
       ...printer,
-      isDefault: store.has('selectPrinter') 
-        ? selectPrinter.name === printer.name
-        : printer.isDefault
+      isDefault:  store.has('selectPrinter') 
+                  ? selectPrinter.name === printer.name
+                  : printer.isDefault
     };
   });
 }

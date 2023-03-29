@@ -6,13 +6,14 @@ body:has(#sougeibus) {
     width: 210mm ;
     height: 297mm;
     margin: 30px auto;
+    padding: 7mm 6mm 6mm;
     border: dotted 1px #dcdcdc;
     background-color: white;
     position: relative;
 }
 
 #sougeibus .container {
-    margin-top: 50px;
+    margin: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -90,7 +91,7 @@ body:has(#sougeibus) {
 #sougeibus .print_pages > .date{
     position: absolute;
     top: 95%;
-    right: 84%;
+    right: 85%;
 }
 
 #sougeibus .print_pages > .pageNumber{
@@ -99,24 +100,30 @@ body:has(#sougeibus) {
     right: 4%;
 }
 
-#sougeibus .print_pages{
-    padding: 5mm;
-}
 
 /* @page { size: A4 !important; }  */
 @media print {
 
     body:has(#sougeibus) {
-        width: 172mm;
-        height: 251mm;
+        width: 210mm ;
         background-color: white !important;
     }
 
+    #sougeibus .container {
+        margin: 0px !important;
+        padding: 0px !important;
+        max-width: 210mm !important;
+        min-width: 210mm !important;
+    }
+
     #sougeibus .print_pages{
-        width: 172mm;
-        height: 251mm;
-        margin: auto;
+        width: 100%;
+        height: 295mm;
+        margin: 0px !important;
+        padding: 9.5mm 7.5mm;
         border: none;
+        background-color: white;
+        position: relative;
         page-break-after: always;
     }
 
