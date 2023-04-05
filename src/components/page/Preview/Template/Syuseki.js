@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Dropdown from 'react-bootstrap/Dropdown';
 import "./Syuseki.css";
 
 
@@ -10,16 +9,14 @@ const Goukakulist = ({ csvData, previewData }) => {
   const [lesson, setLesson] = useState([]);
   
   const tmpDate = new Date(csvData[0][2]);
-  const [month, setMonth] = useState((tmpDate.getMonth() + 1) || new Date());
+  const month = (tmpDate.getMonth() + 1) || new Date();
 
   const date = new Date();
-  const [day, setDay] = useState(date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2));
+  const day = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
   useEffect(() => {
 
-    let courseName = '';
     let newPages = [];
-    let newCourses = [];
     let pageNumber = 0;
     let page = [];
     let count = 2;

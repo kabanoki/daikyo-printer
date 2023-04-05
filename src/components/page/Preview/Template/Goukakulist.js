@@ -9,7 +9,7 @@ const Goukakulist = ({ csvData, previewData }) => {
   const [courses, setCourses] = useState([]);
 
   const date = new Date();
-  const [day, setDay] = useState(date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2));
+  const day = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
   useEffect(() => {
 
