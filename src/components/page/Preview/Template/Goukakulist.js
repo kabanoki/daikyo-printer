@@ -22,7 +22,7 @@ const Goukakulist = ({ csvData, previewData }) => {
 
     csvData.filter((c,i)=>i !==  0).forEach((row, i) => {
 
-      if(count >= 55){
+      if(count >= 48){
         count = 0;
         pageNumber = pageNumber+1;
         page = [];
