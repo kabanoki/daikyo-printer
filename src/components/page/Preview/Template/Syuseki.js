@@ -12,12 +12,9 @@ const Goukakulist = ({ csvData, previewData }) => {
   const day = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
   useEffect(() => {
-
     
     let newPages = [];
-
     let pageNumber = 0;
-
     let Courses = [];
     let tmpCourseName = '';
     let tmpCoachName = '';
@@ -35,7 +32,7 @@ const Goukakulist = ({ csvData, previewData }) => {
     // console.log(Courses);
 
     Courses.forEach((course, i)=>{
-      csvData.filter(csv => course === csv[0]).forEach((row, i) => {
+      csvData.filter(c => course === c[0]).forEach((row, i) => {
         if(row[1] !== tmpCoachName){
           tmpCoachName = row[1];
 
@@ -43,10 +40,10 @@ const Goukakulist = ({ csvData, previewData }) => {
           let page = [];
           let count = 0;
 
-          csvData.filter(c=>{
+          csvData.filter(csv=>{
             return (
-              c[0] === course
-              && c[1] === row[1]
+              csv[0] === course
+              && csv[1] === row[1]
             );
           }).forEach((row, i) => {
             if(count >= 19){
@@ -59,7 +56,6 @@ const Goukakulist = ({ csvData, previewData }) => {
             page.push(row);
             newPages[pageNumber] = page;
           });
-
         }
       });
     });

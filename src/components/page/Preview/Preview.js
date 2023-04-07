@@ -47,7 +47,7 @@ const Preview = () => {
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
       case 'P7' : //認定書
-        setpageSize('A5');
+        setpageSize('A4');
         document.title = `認定書｜E-Printsys`;
         return (<div id="ninteisho">
           <Navbar pageSize={'A5'} landscape={false} />
