@@ -39,7 +39,7 @@ body:has(#goukakulist) {
 #goukakulist .tables {}
 
 #goukakulist .table-header {
-    font-size: 100%;
+    font-size: 110%;
     display: grid;
     grid-template-columns: 10% 20% 17% 35% 9% 9%;
     font-weight: bold;
@@ -48,7 +48,7 @@ body:has(#goukakulist) {
     display: grid;
     grid-template-columns: 10% 20% 17% 35% 9% 9%;
     border-bottom: 1px solid #dcdcdc;
-    font-size: 90%;
+    font-size: 100%;
 }
 
 #goukakulist .table-body .table-row > p{

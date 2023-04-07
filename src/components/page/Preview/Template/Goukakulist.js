@@ -18,11 +18,11 @@ const Goukakulist = ({ csvData, previewData }) => {
     let newCourses = [];
     let pageNumber = 0;
     let page = [];
-    let count = 2;
+    let count = 3;
 
     csvData.filter((c,i)=>i !==  0).forEach((row, i) => {
 
-      if(count >= 48){
+      if(count >= 45){
         count = 0;
         pageNumber = pageNumber+1;
         page = [];
