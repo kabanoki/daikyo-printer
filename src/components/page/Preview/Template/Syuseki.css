@@ -1,6 +1,6 @@
 
 body:has(#syuseki) {
-    font-size: 8.5px;
+    font-size: 12.5px;
 }
 
 #syuseki .dropdown {
@@ -66,26 +66,29 @@ body:has(#syuseki) {
 #syuseki .page_header div.title div {
     display: flex;
     justify-content: space-between;
-    font-family: 'ＭＳ ゴシック';
+    font-family: 'ＭＳ 明朝';
 }
 
 #syuseki .page_header div.title div .title-month {
     color: black;
+    font-family: 'ＭＳ ゴシック';
 }
 
 #syuseki .tables {}
 
 #syuseki .table-header {
-    font-size: 9px;
+    font-size: 10px;
+    line-height: 1.2;
     display: grid;
     margin: 0 5px;
-    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 4% 4% 4% 4% 4% 4% 25%;
+    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 5% 4% 4% 4% 4% 4% 24%;
     font-weight: bold;
 }
 #syuseki .table-body .table-row{
+    line-height: 1.2;
     display: grid;
     margin: 0 5px;
-    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 4% 4% 4% 4% 4% 4% 25%;
+    grid-template-columns: 4% 10% 15% 4% 8% 5% 5% 5% 4% 4% 4% 4% 4% 24%;
     border-bottom: 1px solid #dcdcdc;
 }
 
@@ -133,6 +136,7 @@ body:has(#syuseki) {
 #syuseki .t5 {
     display: table-cell;
     vertical-align: middle;
+    text-align: center;
 }
 #syuseki .t6 {
     display: table-cell;
@@ -185,14 +189,14 @@ body:has(#syuseki) {
 
 #syuseki .print_pages_w > .date{
     position: absolute;
-    bottom: 5mm;
-    right: 225mm;
+    top: 94%;
+    right: 91%;
 }
 
 #syuseki .print_pages_w > .pageNumber{
     position: absolute;
-    bottom: 5mm;
-    right: 20mm;
+    top: 94%;
+    right: 3%;
 }
 
 /* @page { size: A4 landscape !important; }  */

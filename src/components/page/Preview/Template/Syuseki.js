@@ -4,9 +4,6 @@ import "./Syuseki.css";
 
 const Goukakulist = ({ csvData, previewData }) => {
   const [pages, setPages] = useState([]);
-  const [courseName, setCourseName] = useState('');
-  const [coachName, setCoachName] = useState('');
-  const [lesson, setLesson] = useState([]);
   
   const tmpDate = new Date(csvData[0][2]);
   const month = (tmpDate.getMonth() + 1) || new Date();
@@ -16,46 +13,68 @@ const Goukakulist = ({ csvData, previewData }) => {
 
   useEffect(() => {
 
+    
     let newPages = [];
+
     let pageNumber = 0;
-    let page = [];
-    let count = 2;
 
+    let Courses = [];
+    let tmpCourseName = '';
+    let tmpCoachName = '';
+
+    // コース用の配列作成 必要ないかも？
     csvData.filter((c,i)=>i !==  0).forEach((row, i) => {
-
-      if(i === 0){
-        setCourseName(row[0]);
-        setCoachName(row[1]);
-        setLesson([
-          row[13],
-          row[14],
-          row[15],
-          row[16],
-        ]);
+      if(tmpCourseName !== row[0]){
+        let puted = Courses.filter(e => e === row[0]);
+        if(puted.length === 0){
+          tmpCourseName = row[0];
+          Courses.push(row[0]);
+        }
       }
-
-      if(count >= 20){
-        count = 0;
-        pageNumber = pageNumber+1;
-        page = [];
-      }
-
-      count = count + 1;
-      page.push(row);
-      newPages[pageNumber] = page;
     });
+    // console.log(Courses);
 
+    Courses.forEach((course, i)=>{
+      csvData.filter(csv => course === csv[0]).forEach((row, i) => {
+        if(row[1] !== tmpCoachName){
+          tmpCoachName = row[1];
+
+          pageNumber = pageNumber + 1;
+          let page = [];
+          let count = 0;
+
+          csvData.filter(c=>{
+            return (
+              c[0] === course
+              && c[1] === row[1]
+            );
+          }).forEach((row, i) => {
+            if(count >= 19){
+              pageNumber = pageNumber+1;
+              page = [];
+              count = 0;
+            }
+      
+            count = count + 1;
+            page.push(row);
+            newPages[pageNumber] = page;
+          });
+
+        }
+      });
+    });
     // console.log(newPages);
     setPages(newPages);
+
   }, [csvData]);
 
   return (<>
     <div className="container">
       {pages.map((page, i) => {
-         return (<div className='print_pages_w' title={`${i+1}ページ`} key={i}>
+         return (<div className='print_pages_w' title={`${i}ページ`} key={i}>
             <div className='page_header'>
-              <div className='weekname'>{courseName}</div>
-              <div className='coachname'>{coachName}</div>
+              <div className='weekname'>{page[i][0]}</div>
+              <div className='coachname'>{page[i][1]}</div>
               <div className='title'>
                 <div>
                   <span className='title-label'>出欠記入表</span>
@@ -73,10 +92,10 @@ const Goukakulist = ({ csvData, previewData }) => {
                 <div className='t6'>現在級</div>
                 <div className='t7'>前々月<br /><small>コース</small></div>
                 <div className='t8'>前月<br /><small>コース</small></div>
-                <div className='t9'>第1週<br /><small>{lesson[0]}</small></div>
-                <div className='t10'>第2週<br /><small>{lesson[1]}</small></div>
-                <div className='t11'>第3週<br /><small>{lesson[2]}</small></div>
-                <div className='t12'>第4週<br /><small>{lesson[3]}</small></div>
+                <div className='t9'>第1週<br /><small>{page[i][13]}</small></div>
+                <div className='t10'>第2週<br /><small>{page[i][14]}</small></div>
+                <div className='t11'>第3週<br /><small>{page[i][15]}</small></div>
+                <div className='t12'>第4週<br /><small>{page[i][16]}</small></div>
                 <div className='t13'>合格</div>
                 <div className='t14'>備考</div>
               </div>
@@ -88,7 +107,7 @@ const Goukakulist = ({ csvData, previewData }) => {
                   } key={`row-${i}-${s}`}>
                     <div className='t1'>{row[2]}</div>
                     <div className='t2'>{row[3]}<br /><small>{row[4]}</small></div>
-                    <div className='t3'>{courseName}<br />{coachName}</div>
+                    <div className='t3'>{row[5]}<br />{row[1]}</div>
                     <div className='t4'>{row[6]}</div>
                     <div className='t5'>{row[7]}</div>
                     <div className='t6'>{row[8]}<br /><small>{row[9]}　ｈ</small></div>
@@ -105,7 +124,7 @@ const Goukakulist = ({ csvData, previewData }) => {
               </div>
             </div>  
             <span className='date'>{day}</span>
-            <span className='pageNumber'>{i+1}</span>  
+            <span className='pageNumber'>{i}</span>  
         </div>);
       })}
     </div>
