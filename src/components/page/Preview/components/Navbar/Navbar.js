@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPrint, faXmark  } from '@fortawesome/free-solid-svg-icons'
 import "./style.css";
 
-const Navbar = ({pageSize, landscape}) => {
+const Navbar = ({pageSize, landscape, silent}) => {
   const sendRequestPrint = async () => {
     document.querySelector('body').style.overflow = 'hidden';
     document.getElementById('overlay').style.display = 'block';
     await new Promise((resolve, reject) => {
-      const res =   window.electronAPI.sendRequestPrint(pageSize, landscape);
+      const res =   window.electronAPI.sendRequestPrint(pageSize, landscape, silent);
       resolve(res);
     }).then((res)=>{
       console.log(res);

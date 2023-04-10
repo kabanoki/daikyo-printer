@@ -12,7 +12,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     deleteCsv: (csv) => ipcRenderer.invoke('deleteCsv', csv),
     getPreviewData: () => ipcRenderer.invoke('getPreviewData'),
     openPreviewWindow: (selectCsv) => ipcRenderer.send('openPreviewWindow', { data: selectCsv }),
-    sendRequestPrint: (pageSize, landscape) => ipcRenderer.invoke('sendRequestPrint', {pageSize:pageSize, landscape:landscape}),
+    sendRequestPrint: (pageSize, landscape, silent) => ipcRenderer.invoke('sendRequestPrint', {pageSize:pageSize, landscape:landscape, silent: silent}),
     getPrinterList: () => ipcRenderer.invoke('getPrinterList'),
     setPrinter: (printer) => ipcRenderer.invoke('setPrinter', printer),
     getPrinter: () => ipcRenderer.invoke('getPrinter'),

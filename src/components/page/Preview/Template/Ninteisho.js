@@ -7,9 +7,11 @@ const Ninteisho = ({ csvData }) => {
     {csvData.filter((csv, i) => i !== 0 ).map((csv, i)=>{
      return (
         <div className='print_pages' title={`${i+1}ページ`} key={i}>
-          <div id="rank">{csv[0]}</div>
-          <div id="name">{csv[1]}</div>
-          <div id="date">{csv[5]}</div>
+          <div className='print_page_inner'>
+            <div id="rank">{csv[0]}</div>
+            <div id="name">{csv[1]}</div>
+            <div id="date">{csv[5]}</div>
+          </div>
         </div>
       )
     })}

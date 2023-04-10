@@ -191,7 +191,6 @@ async function handleRequestPrint(event, options){
 
   options = {
     ...options,
-    silent: true,
     margins: {
       marginType: 'none'
     },

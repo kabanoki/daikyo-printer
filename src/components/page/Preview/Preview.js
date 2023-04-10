@@ -43,35 +43,35 @@ const Preview = () => {
         setpageSize('A4');
         document.title = `送迎バス｜E-Printsys`;
         return (<div id="sougeibus"> 
-        <Navbar pageSize={'A4'} landscape={false}  />
+        <Navbar pageSize={'A4'} landscape={false} silent={true}  />
         <Sougeibus csvData={csvData} previewData={previewData} />
         </div>);
       case 'P7' : //認定書
         setpageSize('A4');
         document.title = `認定書｜E-Printsys`;
         return (<div id="ninteisho">
-          <Navbar pageSize={'A5'} landscape={false} />
+          <Navbar pageSize={'A5'} landscape={false} silent={false} />
           <Ninteisho csvData={csvData} />
           </div>);  
       case 'P3' : //合格証
         setpageSize('A5');
         document.title = `合格証｜E-Printsys`;
         return (<div id="goukakusho">
-            <Navbar pageSize={'A5'} landscape={false} />
+            <Navbar pageSize={'A5'} landscape={false} silent={false} />
             <Goukakusho csvData={csvData} />
         </div>);
       case 'goukakulist' : //合格者一覧表
         setpageSize('A4');
         document.title = `合格者一覧表｜E-Printsys`;
         return (<div id="goukakulist"> 
-          <Navbar pageSize={'A4'} landscape={false} />
+          <Navbar pageSize={'A4'} landscape={false} silent={true} />
           <Goukakulist csvData={csvData} previewData={previewData} />
           </div>);
       case 'syuseki' : //出欠記入表
         setpageSize('A4 landscape');
         document.title = `出欠記入表｜E-Printsys`;
         return (<div id="syuseki"> 
-          <Navbar pageSize={'A4'} landscape={true} />
+          <Navbar pageSize={'A4'} landscape={true} silent={true} />
           <Syuseki csvData={csvData} previewData={previewData} />
           </div>);
       case 'P2' : //カルテ
