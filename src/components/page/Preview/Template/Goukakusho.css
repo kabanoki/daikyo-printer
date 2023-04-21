@@ -5,8 +5,6 @@
 }
 
 #goukakusho .print_pages {
-    /* width: 148mm;
-    height: 210mm; */
     height: 297mm;
     width: 210mm;
     margin: 30px auto;
@@ -23,8 +21,6 @@
     font-weight: bold;
     position: absolute;
     font-size: 3.5em;
-    /* top: 57mm;
-    right: 81mm; */
     top: 28%;
     right: 52%;
 }
@@ -34,8 +30,6 @@
     font-weight: normal;
     position: absolute;
     font-size: 1.5em;
-    /* top: 69mm;
-    right: 86mm; */
     top: 33%;
     right: 56%;
 }
@@ -45,8 +39,6 @@
     font-weight: normal;
     position: absolute;
     font-size: 1.8em;
-    /* top: 68.5mm;
-    right: 72mm; */
     top: 32.5%;
     right: 46%;
 }
@@ -56,11 +48,8 @@
     font-weight: bold;
     position: absolute;
     font-size: 5.6em;
-    /* top: 74mm;
-    right: 36mm; */
     top: 35%;
     right: 21%;
-    /* text-shadow: 0.5px 0.5px 0.5px; */
 }
 
 #goukakusho .print_pages #date {
@@ -68,8 +57,6 @@
     font-weight: normal;
     position: absolute;
     font-size: 1.8em;
-    /* top: 142mm;
-    right: 20mm; */
     top: 71%;
     right: 13%;
 }
@@ -107,6 +94,31 @@
 
     #goukakulist .dropdown {
         display: none;
+    }
+
+    #goukakusho .print_pages #rank {
+        top: 30%;
+        right: 52%;
+    }
+    
+    #goukakusho .print_pages #number {
+        top: 35%;
+        right: 56%;
+    }
+    
+    #goukakusho .print_pages #weekName {
+        top: 34.5%;
+        right: 46%;
+    }
+    
+    #goukakusho .print_pages #name {
+        top: 37%;
+        right: 21%;
+    }
+    
+    #goukakusho .print_pages #date {
+        top: 73%;
+        right: 13%;
     }
 }
     
