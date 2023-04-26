@@ -97,22 +97,22 @@
     }
 
     #goukakusho .print_pages #rank {
-        top: 27%;
+        top: 25%;
         right: 52%;
     }
     
     #goukakusho .print_pages #number {
-        top: 33%;
+        top: 31%;
         right: 56%;
     }
     
     #goukakusho .print_pages #weekName {
-        top: 32.5%;
+        top: 30.5%;
         right: 46%;
     }
     
     #goukakusho .print_pages #name {
-        top: 36%;
+        top: 34%;
         right: 21%;
     }
     
