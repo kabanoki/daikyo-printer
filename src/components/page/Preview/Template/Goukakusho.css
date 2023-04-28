@@ -40,7 +40,8 @@
     position: absolute;
     font-size: 2em;
     top: 32.5%;
-    right: 46%;
+    /* right: 46%; */
+    left: 49%;
 }
 
 #goukakusho .print_pages #name {
@@ -97,22 +98,23 @@
     }
 
     #goukakusho .print_pages #rank {
-        top: 25.5%;
+        top: 25.8%;
         right: 52%;
     }
     
     #goukakusho .print_pages #number {
-        top: 31.5%;
+        top: 31.8%;
         right: 56%;
     }
     
     #goukakusho .print_pages #weekName {
-        top: 31%;
-        right: 46%;
+        top: 31.3%;
+        /* right: 46%; */
+        left: 49%;
     }
     
     #goukakusho .print_pages #name {
-        top: 34.5%;
+        top: 34.7%;
         right: 21%;
     }
     
