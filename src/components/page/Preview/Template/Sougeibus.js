@@ -6,7 +6,7 @@ const Sougeibus = ({ csvData, previewData }) => {
   const [group, setGroup] = useState(''); 
   const [allTotalGo, setAllTotalGo] = useState(0);
   const [allTotalBack, setAllTotalBack] = useState(0);
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState([{}]);
   const date = new Date();
   const day = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
@@ -104,7 +104,7 @@ const Sougeibus = ({ csvData, previewData }) => {
                       </thead>
                     </table>  
                     {i === 0 ? (<p className='fw-bold'>{group}</p>):''}
-                    <div className="page">
+                    {page.length > 0 ? (<div className="page">
                       {page.map((busStop, s) => {
                         return (
                           <table className='table table-bordered' key={`${busStop.busStop}-${i}-${s}`}>  
@@ -147,7 +147,7 @@ const Sougeibus = ({ csvData, previewData }) => {
                             </tbody>
                           </table>);
                       })}
-                    </div>
+                    </div>):''}
                     {(pages.length - 1) === i ? (
                         <table className='table table-bordered'>  
                         <colgroup>
