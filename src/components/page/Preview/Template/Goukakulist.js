@@ -86,7 +86,7 @@ const Goukakulist = ({ csvData, previewData }) => {
                     <div className='t1'>{row[1]}</div>
                     <div className='t2'>{row[2]}</div>
                     <div className='t3'>{row[3]}</div>
-                    <div className='t4'><span id={row[4]}>{row[4]}</span></div>
+                    <div className='t4'><div id={row[4]}>{row[4]}</div></div>
                     <div className='t5'>{row[5]}</div>
                     <div className='t6'>{row[6]}</div>
                   </div>);

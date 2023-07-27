@@ -91,12 +91,13 @@ body:has(#goukakulist) {
     height: 4mm;
 }
 
-#goukakulist .table-body .table-row.courseName .t4 span {
+#goukakulist .table-body .table-row.courseName .t4 span,
+#goukakulist .table-body .table-row.courseName .t4 div {
     background-color: white;
     font-size: 110%;
     font-weight: 600;
     display: inline-block;
-    width: 15mm;
+    /* width: 15mm; */
     outline: 3px solid;
     box-shadow: 5px 4px 0px 0px #000;
     height: 5.5mm;
